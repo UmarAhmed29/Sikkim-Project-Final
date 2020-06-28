@@ -1,0 +1,41 @@
+<app-page-header [heading]="'Salary Form'" [icon]="'fa-edit'"></app-page-header>
+<form [formGroup]="myForm" novalidate>
+	<table class="table">
+		<tbody>
+			<tr>
+				<td> <span>Select Today Date </span>
+					<my-date-picker name="mydate" [(ngModel)]="model" [options]="myDatePickerOptions" formControlName="myDate" (dateChanged)="onDateChanged($event)"></my-date-picker>
+				</td>
+				<td><span>Enter Employee ID</span>
+					<input type="text" class="form-control input-underline input-lg" formControlName="employeeID">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn rounded-btn" [disabled]="myForm.status == 'INVALID'" (click)="submit()">Submit</button>
+</form>
+<div class="card mb-3" style="margin-top:0px" *ngIf="isSubmit==true">
+	<div class="card-block table-responsive">
+		<table class="table" border="1x">
+			<thead class="thead-inverse">
+				<tr>
+					<!--<th>#</th>-->
+					<th>Employee Name</th>
+					<th>Employee Type</th>
+					<th>Employee ID</th>
+					<th>Salary</th>
+					<th>Payment</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let employee of employeeData">
+					<td>{{employee.employeeName}}</td>
+					<td>{{employee.employeeType}}</td>
+					<td>{{employee.employeeID}}</td>
+					<td>{{employee.salary}}</td>
+					<td><button class="btn btn-default" (click)="salarySubmit(employee)">Submit</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

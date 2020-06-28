@@ -1,0 +1,46 @@
+<app-page-header [heading]="'Attendence Form'" [icon]="'fa-edit'"></app-page-header>
+<form [formGroup]="myForm" novalidate>
+	<table class="table">
+		<tbody>
+			<tr>
+				<td> <span>Select Today Date </span>
+					<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="myDate" (dateChanged)="onDateChanged($event)"></my-date-picker>
+				</td>
+				<tr>
+					<td><span>Month</span>
+						<input type="text" [(ngModel)]="month" class="form-control input-underline input-lg" formControlName="month">
+					</td>
+					<td><span>year</span>
+						<input type="text" [(ngModel)]="year" class="form-control input-underline input-lg" formControlName="year">
+					</td>
+				</tr>
+		</tbody>
+	</table>
+	<!--[disabled]="myForm.status == 'INVALID'"-->
+	<button class="btn rounded-btn" (click)="submit()">Submit</button>
+</form>
+<div class="card mb-3" style="margin-top:0px" *ngIf="isSubmit==true">
+	<div class="card-block table-responsive">
+		<table class="table" border="1x">
+			<thead class="thead-inverse">
+				<tr>
+					<!--<th>#</th>-->
+					<th>Employee Name</th>
+					<th>Employee Type</th>
+					<th>Employee ID</th>
+					<th>Attendance Date</th>
+					<th>Attendance</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let employee of attendanceData">
+					<td>{{employee.employeeName}}</td>
+					<td>{{employee.employeeType}}</td>
+					<td>{{employee.employeeID}}</td>
+					<td>{{employee.attendanceDate}}</td>
+					<td>Present</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

@@ -1,0 +1,48 @@
+<!--<app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>-->
+<!--<h1>View Schools</h1>-->
+<app-page-header [heading]="'Student Details'" [icon]="'fa-edit'"></app-page-header>
+<form [formGroup]="myForm" novalidate>
+	<table class="table">
+		<tbody>
+			<tr>
+				<td><span>Enter Class</span>
+					<input type="text" class="form-control input-underline input-lg" formControlName="class">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn rounded-btn" [disabled]="myForm.status == 'INVALID'" (click)="submit()">Submit</button>
+</form>
+<!--<div class="card mb-3">-->
+<div class="card mb-3">
+	<div class="card-header">Total Student Register {{studentlength}}</div>
+	<div class="card-block table-responsive">
+		<table class="table" border="1x">
+			<thead class="thead-inverse">
+				<tr>
+					<!--<th>#</th>-->
+					<th>Student Name</th>
+					<th>Father Name</th>
+					<th>Registration Date</th>
+					<th>Class</th>
+					<th>QR No</th>
+					<th>Student Fees</th>
+					<th>Email</th>
+					<th>Delete</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let student of studentData">
+					<td>{{student.studentName}}</td>
+					<td>{{student.fatherName}}</td>
+					<td>{{student.registrationDate}}</td>
+					<td>{{student.class}}</td>
+					<td>{{student.QRno}}</td>
+					<td>{{student.studentFees}}</td>
+					<td>{{student.email}}</td>
+					<td><button class="btn btn-default" (click)="delete(student._id)">Delete</button></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

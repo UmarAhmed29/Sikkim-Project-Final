@@ -1,0 +1,49 @@
+<app-page-header [heading]="'Fees Record'" [icon]="'fa-edit'"></app-page-header>
+<form [formGroup]="myForm" novalidate>
+	<table class="table">
+		<tbody>
+			<tr>
+				<td> <span>Select Today Date </span>
+					<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="myDate" (dateChanged)="onDateChanged($event)"></my-date-picker>
+				</td>
+				<td><span>Submition Month</span>
+					<input type="text" [(ngModel)]="month" class="form-control input-underline input-lg" formControlName="month">
+				</td>
+				<td><span>Submittion year</span>
+					<input type="text" [(ngModel)]="year" class="form-control input-underline input-lg" formControlName="year">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+    <!--[disabled]="myForm.status == 'INVALID'"-->
+	<button class="btn rounded-btn"  (click)="submit()">Submit</button>
+</form>
+<div class="card mb-3" style="margin-top:0px" *ngIf="isSubmit==true">
+	<div class="card-block table-responsive">
+		<table class="table" border="1x">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Student Name</th>
+					<th>Father Name</th>
+					<th>Class</th>
+					<th>QR No</th>
+					<th>Student Fees</th>
+					<th>Submittion Date</th>
+					<th>Fees Submittion</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let student of  studentFeesData">
+					<td>{{student.studentName}}</td>
+					<td>{{student.fatherName}}</td>
+					<td>{{student.class}}</td>
+					<td>{{student.QRno}}</td>
+					<td>{{student.studentFees}}</td>
+					<td>{{student.submitionDate}}</td>
+					<td>Submitted</td>
+					<!--<td>{{student.isFeesSubmit}}</td>-->
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

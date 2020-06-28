@@ -1,0 +1,35 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Employee Registration'" [icon]="'fa-edit'"></app-page-header>
+    <div class="row">
+	<div class="col-md-4 push-md-4">
+		<form role="form" [formGroup]="RegistrationForm">
+			<div class="form-content">
+				<div class="form-group">
+					<input class="form-control input-underline input-lg" type="employeeName" formControlName="employeeName" placeholder="Employee Name">
+				</div>
+				<div class="form-group">
+					<input class="form-control input-underline input-lg" type="fatherName" formControlName="fatherName" placeholder="Father Name">
+				</div>
+				<div class="form-group">
+					<input class="form-control input-underline input-lg" type="registrationDate" formControlName="registrationDate" placeholder="Registration Date">
+				</div>
+				<div class="form-group">
+					<input class="form-control input-underline input-lg" type="employeeType" formControlName="employeeType" placeholder="Employee Type">
+				</div>
+				<div class="form-group">
+					<input class="form-control input-underline input-lg" type="employeeID" formControlName="employeeID" placeholder="Employee ID">
+				</div>
+				<div class="form-group">
+					<input class="form-control input-underline input-lg" type="salary" formControlName="salary" placeholder="Employee Salary">
+				</div>
+				<div class="form-group">
+					<input class="form-control input-underline input-lg" type="email" formControlName="email" placeholder="Email">
+				</div>
+				<div class="form-group">
+					<input type="password" class="form-control input-underline input-lg" formControlName="password" placeholder="Password">
+				</div>
+			</div>
+			<button class="btn rounded-btn" [disabled]="RegistrationForm.status == 'INVALID'" (click)="addEmployee()">Submit</button>			&nbsp;
+		</form>
+	</div>
+</div>

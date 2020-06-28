@@ -1,0 +1,46 @@
+<app-page-header [heading]="'Payment Record'" [icon]="'fa-edit'"></app-page-header>
+<form [formGroup]="myForm" novalidate>
+	<table class="table">
+		<tbody>
+			<tr>
+				<td> <span>Select Today Date </span>
+					<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="myDate" (dateChanged)="onDateChanged($event)"></my-date-picker>
+				</td>
+			<tr>
+				<td><span>Payment Month</span>
+					<input type="text"[(ngModel)]="month" class="form-control input-underline input-lg" formControlName="month">
+				</td>
+				<td><span>Payment year</span>
+					<input type="text"[(ngModel)]="year" class="form-control input-underline input-lg" formControlName="year">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn rounded-btn" (click)="submit()">Submit</button>
+</form>
+<div class="card mb-3" style="margin-top:0px" *ngIf="isSubmit==true">
+	<div class="card-block table-responsive">
+		<table class="table" border="1x">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Employee Name</th>
+					<th>Employee Type</th>
+					<th>Employee ID</th>
+					<th>Salary</th>
+					<th>Submittion Date</th>
+					<th>Payment</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let employee of employeeSalaryData">
+					<td>{{employee.employeeName}}</td>
+					<td>{{employee.employeeType}}</td>
+					<td>{{employee.employeeID}}</td>
+					<td>{{employee.salary}}</td>
+					<td>{{employee.submitionDate}}</td>
+					<td>Paid</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
