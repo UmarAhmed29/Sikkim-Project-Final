@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 @Component({
     selector: 'app-employee-registration',
     templateUrl: './employee-registration.component.html',
-    styleUrls: ['./employee-registration.component.scss'],
+    styleUrls: ['./employee-registration.component.css'],
     animations: [routerTransition()]
 })
 export class EmployeeRegistrationComponent implements OnInit {

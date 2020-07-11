@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 @Component({
     selector: 'app-student-registration',
     templateUrl: './student-registration.component.html',
-    styleUrls: ['./student-registration.component.scss'],
+    styleUrls: ['./student-registration.component.css'],
     animations: [routerTransition()]
 })
 export class StudentRegistrationComponent implements OnInit {
