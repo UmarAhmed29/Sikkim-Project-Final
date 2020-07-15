@@ -41,7 +41,6 @@ export class LoginComponent implements OnInit {
             password: this.loginForm.value.password,
             type: this.type,
         }
-        console.log(this.data);
         this.authService.logIn(this.data)
             .map(
             data => { console.log(data); return data },
@@ -49,7 +48,6 @@ export class LoginComponent implements OnInit {
             ).subscribe(
             data => {
                 if (data.length !== 0) {
-                    console.log(data[0]);
                     // if(this.type==="superAdmin"){
                     this.router.navigate(['dashboard']);
                     localStorage.setItem('currentUser', JSON.stringify(data[0]));

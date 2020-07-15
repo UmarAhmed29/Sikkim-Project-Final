@@ -20,7 +20,7 @@
 		<table class="table" border="1x">
 			<thead class="thead-inverse">
 				<tr>
-					
+
 					<th>Student Name</th>
 					<th>Father Name</th>
 					<th>Registration Date</th>
@@ -48,31 +48,18 @@
 </div> -->
 
 <div class="card mb-3">
-	<div class="card-header">Total Employees Register {{employeelength}}</div>
+	<div class="card-header">Total Students Registered : {{studentlength}}</div>
 	<div class="card-block table-responsive">
 		<table class="table display data-table text-nowrap" >
-			<!-- <thead class="thead-inverse">
-				<tr>
-					
-					<th>Employee Name</th>
-					<th>Father Name</th>
-					<th>Registration Date</th>
-					<th>Employee Type</th>
-					<th>Employee ID</th>
-					<th>Salary</th>
-					<th>Email</th>
-					<th>Delete</th>
-				</tr>
-			</thead> -->
 			<thead>
 				<tr>
-					<th> 
+					<th>
 						<div class="form-check">
-							<input type="checkbox" class="form-check-input checkAll">
+							<input type="checkbox" class="form-check-input">
 							<label class="form-check-label">ID</label>
 						</div>
 					</th>
-					<th>Photo</th>
+					<!-- <th>Photo</th> -->
 					<th>Name</th>
 					<th>Gender</th>
 					<th>Class</th>
@@ -84,35 +71,22 @@
 					<th></th>
 				</tr>
 			</thead>
-			<!-- <tbody>
-				<tr *ngFor="let employee of employeeData">
-					<td>{{employee.employeeName}}</td>
-					<td>{{employee.fatherName}}</td>
-					<td>{{employee.registrationDate}}</td>
-					<td>{{employee.employeeType}}</td>
-					<td>{{employee.employeeID}}</td>
-					<td>{{employee.salary}}</td>
-					<td>{{employee.email}}</td>
-					<td><button class="btn btn-default" (click)="delete(employee._id)">Delete</button></td>
-				</tr>
-			</tbody> -->
 			<tbody>
-				<tr>
+				<tr *ngFor="let student of studentData">
 					<td>
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input">
-							<label class="form-check-label">#0021</label>
+							<label class="form-check-label"> {{student.QRno}} </label>
 						</div>
 					</td>
-					<td class="text-center"><img src="/home/rugu/Desktop/rug_pro/Sikkim-Project-Final/FrontEnd/IMG20190525101104.jpg" alt="student"></td>
-					<td>Mark Willy</td>
+					<td> {{student.studentName}} </td>
 					<td>Male</td>
-					<td>2</td>
+					<td> {{student.class}} </td>
 					<td>English</td>
 					<td>A</td>
 					<td>TA-107 Newyork</td>
 					<td>+ 123 9988568</td>
-					<td>kazifahim93@gmail.com</td>
+					<td> {{student.email}} </td>
 					 <td>
 						<div class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -126,35 +100,7 @@
 						</div>
 					</td>
 				</tr>
-				<tr>
-					<td>
-						<div class="form-check">
-							<input type="checkbox" class="form-check-input">
-							<label class="form-check-label">#0022</label>
-						</div>
-					</td>
-					<td class="text-center"><img src="img/figure/student3.png" alt="student"></td>
-					<td>Jessia Rose</td>
-					<td>Female</td>
-					<td>1</td>
-					<td>Mathematics</td>
-					<td>A</td>
-					<td>59 Australia, Sydney</td>
-					<td>+ 123 9988568</td>
-					<td>kazifahim93@gmail.com</td>
-					 <td>
-						<div class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<span class="flaticon-more-button-of-three-dots"></span>
-							</a>
-							<div class="dropdown-menu dropdown-menu-right">
-								<a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
-								<a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-								<a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-							</div>
-						</div>
-					</td>
-				</tr>
+            </tbody>
 		</table>
 	</div>
 </div>
