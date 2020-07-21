@@ -1,7 +1,7 @@
 {
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
-        "name": "sb-admin-angular4-bootstrap4"
+        "name": "School Management System"
     },
     "apps": [
         {
@@ -21,6 +21,7 @@
             "prefix": "app",
             "styles": [
                 "../node_modules/font-awesome/css/font-awesome.css",
+                "../node_modules/bootstrap/scss/bootstrap.scss",
                 "styles/app.scss"
             ],
             "scripts": [

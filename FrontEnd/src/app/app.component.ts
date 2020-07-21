@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { initJsStore } from './provider/IndexedDb/student/idb.service';
 // import { TranslateService } from '@ngx-translate/core';
 @Component({
     selector: 'app-root',
@@ -12,5 +13,16 @@ export class AppComponent {
         // translate.setDefaultLang('en');
         // const browserLang = translate.getBrowserLang();
         // translate.use(browserLang.match(/en|fr|ur|es|it|fa/) ? browserLang : 'en');
+    }
+
+    // function for creating IndexedDb database
+    async ngOnInit() {
+        console.log('in app.component.ts ngOnInit');
+        try {
+            console.log('try block');
+            await initJsStore();
+        } catch (error) {
+            alert(error.message);
+        }
     }
 }
