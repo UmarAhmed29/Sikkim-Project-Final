@@ -1,7 +1,8 @@
 import * as JsStore from 'jsstore';
 import { IDataBase, DATA_TYPE, ITable } from 'jsstore';
-import { Student } from '../../model/student';
-import { environment } from '../../../../environments/environment';
+import { Student } from '../model/student';
+import { Teacher } from '../model/teacher';
+import { environment } from '../../../environments/environment';
 declare var require: any;
 
 const getWorkerPath = () => {
@@ -19,6 +20,7 @@ export const dbname = 'School Database';
 
 
 const getDatabase = () => {
+    // Students table in indexeddb
     const tblStudent: ITable = {
         name: 'Students',
         columns: {
@@ -80,9 +82,73 @@ const getDatabase = () => {
             },
         },
     };
+
+    // Teachers table in indexeddb
+    const tblTeacher: ITable = {
+        name: 'Teachers',
+        columns: {
+            id: {
+                primaryKey: true,
+                autoIncrement: true,
+            },
+            teacherName: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            fatherName: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            gender: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            dob: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            religion: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            blood_grp: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            phone: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            email: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            reg_num: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            qualification: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            exp: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            subject: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+            address: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            },
+        },
+    };
+
     const dataBase: IDataBase = {
         name: dbname,
-        tables: [tblStudent]
+        tables: [tblStudent, tblTeacher]
     };
     return dataBase;
 };
@@ -112,9 +178,8 @@ export const initJsStore = async () => {
     if (isDbCreated) {
         idbCon.insert({
             into: 'Students',
-            values: getAvailableStudents()
-        })
+            values: getAvailableStudents(),
+        });
     }
 };
-
 

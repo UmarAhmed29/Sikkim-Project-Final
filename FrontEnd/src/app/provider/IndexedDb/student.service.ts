@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BaseService } from './base.service';
-import { IStudent } from '../../model/student';
+import { IStudent } from '../model/student';
 
 // @Injectable({
 //   providedIn: 'root'
@@ -53,6 +53,16 @@ export class StudentService extends BaseService {
 
     async clearStudents() {
         return await this.connection.clear(this.tableName);
+    }
+
+    getStudentByClass(cls: string, section: string) {
+        return this.connection.select<IStudent>({
+            from: this.tableName,
+            where: {
+                cls: cls,
+                section: section
+            }
+        });
     }
 
 }

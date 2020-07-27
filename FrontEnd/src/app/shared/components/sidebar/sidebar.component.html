@@ -22,22 +22,22 @@
 				<i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' }}
 			</a>
 			<a [routerLink]="['/student-registration']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Student Registration' }}
-			</a>
+				<i class="fa fa-fw fa-id-card"></i>&nbsp;{{ 'Student Registration' }}
+            </a>
+            <a [routerLink]="['/students-detail']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-users"></i>&nbsp;{{ "Student's Detail"  }}
+            </a>
 			<a [routerLink]="['/employee-registration']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Employe Registration'  }}
+				<i class="fa fa-id-badge"></i>&nbsp;{{ 'Teacher Registration'  }}
 			</a>
 			<a [routerLink]="['/employees-detail']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-file-o"></i>&nbsp;{{ 'Employees Detail'  }}
-			</a>
-			<a [routerLink]="['/students-detail']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-file-o"></i>&nbsp;{{ 'Students Detail'  }}
+				<i class="fa fa-list-alt"></i>&nbsp;{{ "Teacher's Detail"  }}
 			</a>
 			<a [routerLink]="['/attendance-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-file-o"></i>&nbsp;{{ 'Attendance Form'  }}
+				<i class="fa fa-check"></i>&nbsp;{{ 'Attendance Form'  }}
 			</a>
 			<a [routerLink]="['/attendance-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-file-o"></i>&nbsp;{{ 'Attendance Record'  }}
+				<i class="fa fa-list"></i>&nbsp;{{ 'Attendance Record'  }}
 			</a>
 			<a [routerLink]="['/fees-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-file-o"></i>&nbsp;{{ 'Fees Form'  }}

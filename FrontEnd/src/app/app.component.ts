@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { initJsStore } from './provider/IndexedDb/student/idb.service';
+import { initJsStore } from './provider/IndexedDb/idb.service';
 // import { TranslateService } from '@ngx-translate/core';
 @Component({
     selector: 'app-root',
@@ -17,9 +17,7 @@ export class AppComponent {
 
     // function for creating IndexedDb database
     async ngOnInit() {
-        console.log('in app.component.ts ngOnInit');
         try {
-            console.log('try block');
             await initJsStore();
         } catch (error) {
             alert(error.message);

@@ -7,19 +7,27 @@ import { EmployeeDetailService } from './../../../provider/employeeDetail/employ
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { INgxMyDpOptions } from 'ngx-mydatepicker';
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import { AttendanceService } from './../../../provider/attendance/attendance.service';
-
+import { StudentService } from '../../../provider/IndexedDb/student.service';
 const now = new Date();
 
 @Component({
   selector: 'app-attendance-form',
   templateUrl: './attendance-form.component.html',
-  styleUrls: ['./attendance-form.component.scss']
+  styleUrls: ['./attendance-form.component.css'],
+  providers: [StudentService]
 })
 export class AttendanceFormComponent implements OnInit {
+    S_cls;
+    S_section;
+    S_month;
+    S_year;
+    studentsList = [];
+    private service: StudentService;
+    searchData = false;
   check;
   isSubmit = false;
   d = new Date();
@@ -43,9 +51,10 @@ export class AttendanceFormComponent implements OnInit {
   attendanceData;
   checkDateSelect = false;
 
-  constructor(private formBuilder: FormBuilder, private employeeDetailService: EmployeeDetailService, private attendanceService: AttendanceService) {
+    constructor(private formBuilder: FormBuilder, private employeeDetailService: EmployeeDetailService, private attendanceService: AttendanceService, service: StudentService) {
     // this.createForm();
     // console.log("day"+this.date,"year"+this.year,"month"+this.month)
+    this.service = service;
     var schoolDetail = localStorage.getItem('currentUser');
     var schoolDetailParse = JSON.parse(schoolDetail);
     this.employeeDetailService.employeeDetail({ schoolID: schoolDetailParse._id })
@@ -103,8 +112,10 @@ export class AttendanceFormComponent implements OnInit {
       // Empty string or null means no initial value. Can be also specific date for
       // example: {date: {year: 2018, month: 10, day: 9}} which sets this date to initial
       // value.
-      myDate: [null, Validators.required],
-      employeeID: [null, Validators.required]
+      cls: [null, Validators.required],
+      section: [null, Validators.required],
+      month: [null, Validators.required],
+      year: [null, Validators.required]
       // other controls are here...
     });
   }
@@ -186,36 +197,24 @@ export class AttendanceFormComponent implements OnInit {
     //   }
     // }
   }
-  submit() {
-    console.log(this.attendanceData);
-    // if (this.todayDate !== "") {
-    // for (var i = 0; i < this.attendanceData.length; i++) {
-    //   delete this.attendanceData[i].email
-    //   delete this.attendanceData[i].fatherName
-    //   delete this.attendanceData[i].password
-    //   delete this.attendanceData[i].registrationDate
-    //   delete this.attendanceData[i].salary
-    //   delete this.attendanceData[i].type
-    // }
-    // console.log(this.attendanceData);
-    //   var attendanceRecord = {}
-    //   var result = {};
-    //   for (var i = 0; i < this.attendanceData.length; i++) {
-    //     result[this.attendanceData[i].employeeID] = this.attendanceData[i];
-    //   }
-    //   console.log(result)
-    //   this.attendanceService.attendanceSubmit(result)
-    //     .subscribe(
-    //     data => {
-    //       this.employeeData = data;
-    //       this.isSubmit = true;
-    //       alert("Attendeance Submitted");
-    //     },
-    //     err => { alert("Something Went Wrong"); console.log(err) }
-    //     );
-    // }
-    // else {
-    //   alert("Please Select Date");
-    // }
+
+//   search specific students from class,section
+  async search() {
+    this.S_cls = this.myForm.value.cls;
+    this.S_section = this.myForm.value.section;
+    this.S_month = this.myForm.value.month;
+    this.year = this.myForm.value.year;
+    // console.log('Selected in Search ', this.S_cls, this.S_section, this.S_month);
+
+    try {
+            this.studentsList = await this.service.getStudentByClass(this.S_cls, this.S_section);
+            console.log('data :: ', this.studentsList);
+            if(this.studentsList.length > 0){
+                this.searchData = true;
+            }
+        } catch (error) {
+            console.error(error);
+            alert(error.message);
+        }
   }
 }

@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { StudentDetailService } from './../../../provider/studentDetail/studentDetail.service';
 // indexeddb imports
-import { StudentService } from '../../../provider/IndexedDb/student/student.service';
+import { StudentService } from '../../../provider/IndexedDb/student.service';
 import { Student, IStudent } from '../../../provider/model/student';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';

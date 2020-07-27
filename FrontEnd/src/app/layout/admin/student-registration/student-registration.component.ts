@@ -5,12 +5,16 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../../../provider/auth.service';
+import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 // indexeddb imports
-import { StudentService } from '../../../provider/IndexedDb/student/student.service';
+import { StudentService } from '../../../provider/IndexedDb/student.service';
 import { Student, IStudent } from '../../../provider/model/student';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+
+const now = new Date();
+
 @Component({
     selector: 'app-student-registration',
     templateUrl: './student-registration.component.html',
@@ -26,6 +30,19 @@ export class StudentRegistrationComponent implements OnInit {
     oldStudent: IStudent = new Student();
     // indexeddb part end
     RegistrationForm: FormGroup;
+    d = new Date();
+    date = this.d.getDate().toString();
+    year = this.d.getFullYear().toString();
+    months = this.d.getMonth() + 1;
+    month = this.months.toString();
+    todayDate = this.date + '.' + this.month + '.' + this.year;
+    dateSelect = this.date + '.' + this.month + '.' + this.year;
+    model: any = { date: { day: this.date, month: this.month, year: this.year } };
+    public myDatePickerOptions: IMyDpOptions = {
+        // other options...
+        dateFormat: 'dd/mm/yyyy',
+    };
+
     constructor(public fb: FormBuilder, public router: Router, private authService: AuthService, service: StudentService) {
         this.service = service;
         this.createForm();
@@ -40,10 +57,10 @@ export class StudentRegistrationComponent implements OnInit {
             rollnum: ['', [Validators.required]],
             blood_grp: ['', [Validators.required]],
             religion: ['', [Validators.required]],
-            email: ['', [Validators.required]],
+            email: [''],
             cls: ['', [Validators.required]],
             section: ['', [Validators.required]],
-            adm_id: ['',[Validators.required]],
+            adm_id: ['', [Validators.required]],
             phone: ['', [Validators.required]],
             address: ['', [Validators.required]]
         })
@@ -68,8 +85,15 @@ export class StudentRegistrationComponent implements OnInit {
             localStorage.setItem('isLoggedin', 'true');
     }
 
+    onDateChanged(event: IMyDateModel) { //calender k change krne se jo data araha
+    this.dateSelect = event.formatted;
+    console.log(event.formatted)
+    // event properties are: event.date, event.jsdate, event.formatted and event.epoc
+    }
+
     // IndexedDb functions
     async addStudentIDB() {
+        this.newStudent.dob = this.dateSelect;
         try {
             const addedStudents = await this.service.addStudent(this.newStudent) as IStudent[];
             if (addedStudents.length > 0) {
