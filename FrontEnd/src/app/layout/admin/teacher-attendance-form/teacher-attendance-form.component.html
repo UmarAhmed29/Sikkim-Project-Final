@@ -1,40 +1,10 @@
-<app-page-header [heading]="'Student Attendance Record'" [icon]="'fa-edit'"></app-page-header>
-<!-- <form [formGroup]="myForm" novalidate style="height:300px; width:250px;">
-	<span>Select Today Date </span>
-	<my-date-picker name="mydate" [options]="myDatePickerOptions" formControlName="myDate" (dateChanged)="onDateChanged($event)"></my-date-picker>
-	<span>Enter Employee ID</span>
-	<input type="text" class="form-control input-underline input-lg" formControlName="employeeID">
-	<button class="btn rounded-btn" [disabled]="myForm.status == 'INVALID'" (click)="attendanceCheck()">Submit</button>
-</form>
-<div class="card mb-3" style="margin-top:-100px" *ngIf="isSubmit==true">
-	<div class="card-block table-responsive">
-		<table class="table" border="1x">
-			<thead class="thead-inverse">
-				<tr>
-					<th>Employee Name</th>
-					<th>Employee Type</th>
-					<th>Employee ID</th>
-					<th>Attendance</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let employee of attendanceData">
-					<td>{{employee.employeeName}}</td>
-					<td>{{employee.employeeType}}</td>
-					<td>{{employee.employeeID}}</td>
-					<td>Present</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div> -->
+<app-page-header [heading]="'Teacher Attendance Form'" [icon]="'fa-edit'"></app-page-header>
 
-<!-- Search Form start -->
 <div class="card height-auto">
     <div class="card-body">
         <form class="new-added-form" [formGroup]="myForm">
             <div class="row">
-                <div class="col-xl-3 col-lg-6 col-12 form-group">
+                <!-- <div class="col-xl-3 col-lg-6 col-12 form-group">
                     <label>Class</label>
                     <select class="select2 form-control" formControlName="cls">
                         <option value="">Select Class</option>
@@ -49,8 +19,8 @@
                         <option value="9th">9th</option>
                         <option value="10th">10th</option>
                     </select>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-12 form-group">
+                </div> -->
+                <!-- <div class="col-xl-3 col-lg-6 col-12 form-group">
                     <label>Section</label>
                     <select class="select2 form-control" formControlName="section">
                         <option>Select Section</option>
@@ -59,7 +29,7 @@
                         <option value="C">C</option>
                         <option value="D">D</option>
                     </select>
-                </div>
+                </div> -->
                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                     <label>Date</label>
                     <div class="form-control">
@@ -67,45 +37,52 @@
                             formControlName="date" (dateChanged)="onDateChanged($event)"></my-date-picker>
                     </div>
                 </div>
-            </div>
+            </div>&nbsp;
             <div class="col-12 form-group mg-t-8">
-                <button class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" (click)="search()">Search</button>
+                <button class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" (click)="search()">Load</button>
             </div>
         </form>
     </div>
 </div>
-<!-- Search form end -->
-
-<!-- Display List Start -->
-<div class="col-12" *ngIf="studentsList.length!=0">
+<div class="col-12" *ngIf="teachersList.length!=0">
     <div class="card">
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
                     <h3>Attendence Sheet for Date : {{dateSelect}} </h3>
-                    <h3>Class {{myForm.value.cls}} - Section {{myForm.value.section}}</h3>
+                    <!-- <h3>Class {{myForm.value.cls}} - Section {{myForm.value.section}}</h3> -->
                 </div>
             </div>
             <div class="table-responsive">
                 <table class="table bs-table table-striped table-bordered text-nowrap">
                     <thead>
                         <tr>
-                            <th>Roll No.</th>
-                            <th>Student Name</th>
+                            <th>Reg. No.</th>
+                            <th>Teacher Name</th>
                             <th>Attendance</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let student of studentsList">
-                            <td> {{student.rollnum}} </td>
-                            <td> {{student.studentName}} </td>
-                            <td> <span class="fa fa-check text-success" *ngIf="student.attendance == 'present'"></span>
-                                <span class="fa fa-times text-danger" *ngIf="student.attendance == 'absent'"></span></td>
+                        <tr *ngFor="let teacher of teachersList">
+                            <td> {{teacher.reg_num}} </td>
+                            <td> {{teacher.teacherName}} </td>
+                            <td>
+                                <span><input type="checkbox" value="{{teacher.id}}"
+                                        name="01/{{myForm.value.month}}/{{myForm.value.year}}"
+                                        (change)="changeAttendancePresent($event, teacher)"> Present </span>
+                                &nbsp;&nbsp;&nbsp;
+                                <span><input type="checkbox" value="{{teacher.id}}"
+                                        name="02/{{myForm.value.month}}/{{myForm.value.year}}"
+                                        (change)="changeAttendanceAbsent($event, teacher)"> Absent </span>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <div class="col-12 form-group mg-t-8 center">
+                <button class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark"
+                    (click)="submitAttendance()">Submit</button>
+            </div>
         </div>
     </div>
 </div>
-<!-- Display List End -->

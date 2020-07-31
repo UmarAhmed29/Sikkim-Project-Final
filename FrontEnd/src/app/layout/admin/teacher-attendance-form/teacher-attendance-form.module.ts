@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AttendanceFormRoutingModule } from './attendance-form-routing.module';
-import { AttendanceFormComponent } from './attendance-form.component';
+import { TeacherAttendanceFormRoutingModule } from './teacher-attendance-form-routing.module';
+import { TeacherAttendanceFormComponent } from './teacher-attendance-form.component';
 import { ReactiveFormsModule  } from '@angular/forms';
 // import {DatePickerModule} from 'angular-io-datepicker';
 // import { OverlayModule } from "angular-io-overlay";
@@ -12,7 +12,7 @@ import { PageHeaderModule } from '../../../shared';
 @NgModule({
   imports: [
     CommonModule,
-    AttendanceFormRoutingModule,
+    TeacherAttendanceFormRoutingModule,
     FormsModule,
     ReactiveFormsModule,
     // OverlayModule,
@@ -20,6 +20,6 @@ import { PageHeaderModule } from '../../../shared';
     MyDatePickerModule,
     PageHeaderModule
   ],
-  declarations: [AttendanceFormComponent]
+  declarations: [TeacherAttendanceFormComponent]
 })
-export class AttendanceFormModule { }
+export class TeacherAttendanceFormModule { }

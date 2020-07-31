@@ -1,4 +1,4 @@
-<app-page-header [heading]="'Attendence Form'" [icon]="'fa-edit'"></app-page-header>
+<app-page-header [heading]="'Student Attendance Form'" [icon]="'fa-edit'"></app-page-header>
 	<!-- <form [formGroup]="myForm" novalidate style="height:300px; width:250px;">
 		<span>Select Today Date </span>
 		<my-date-picker [(ngModel)]="model" name="mydate" [options]="myDatePickerOptions" formControlName="myDate" (dateChanged)="onDateChanged($event)"></my-date-picker>
@@ -67,39 +67,11 @@
                     </select>
                 </div>
                 <div class="col-xl-3 col-lg-6 col-12 form-group">
-                    <label>Month</label>
-                    <select class="select2 form-control" formControlName="month">
-                        <option value="0">Select Month</option>
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">December</option>
-                    </select>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-12 form-group">
-                    <label>Year</label>
-                    <select class="select2 form-control" formControlName="year">
-                        <option value="">Select Year</option>
-                        <option value="2020">2020</option>
-                        <option value="2021">2021</option>
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                        <option value="2030">2030</option>
-                    </select>
+                    <label>Date</label>
+                        <div class="form-control">
+                            <my-date-picker [(ngModel)]="model" name="date" [options]="myDatePickerOptions" formControlName="date"
+                                (dateChanged)="onDateChanged($event)"></my-date-picker>
+                        </div>
                 </div>
             </div>
             <div class="col-12 form-group mg-t-8">
@@ -108,12 +80,12 @@
         </form>
     </div>
 </div>
-<div class="col-12" *ngIf="searchData">
+<div class="col-12" *ngIf="studentsList.length!=0">
     <div class="card">
         <div class="card-body">
             <div class="heading-layout1">
                 <div class="item-title">
-                    <h3>Attendence Sheet for : {{myForm.value.month}} {{myForm.value.year}}</h3>
+                    <h3>Attendence Sheet for Date : {{dateSelect}} </h3>
                     <h3>Class {{myForm.value.cls}} - Section {{myForm.value.section}}</h3>
                 </div>
             </div>
@@ -121,107 +93,28 @@
                 <table class="table bs-table table-striped table-bordered text-nowrap">
                     <thead>
                         <tr>
-                            <th class="text-left">Students</th>
-                            <th>1</th>
-                            <th>2</th>
-                            <th>3</th>
-                            <th>4</th>
-                            <th>5</th>
-                            <th>6</th>
-                            <th>7</th>
-                            <th>8</th>
-                            <th>9</th>
-                            <th>10</th>
-                            <th>11</th>
-                            <th>12</th>
-                            <th>13</th>
-                            <th>14</th>
-                            <th>15</th>
-                            <th>16</th>
-                            <th>17</th>
-                            <th>18</th>
-                            <th>19</th>
-                            <th>20</th>
-                            <th>21</th>
-                            <th>22</th>
-                            <th>23</th>
-                            <th>24</th>
-                            <th>25</th>
-                            <th>26</th>
-                            <th>27</th>
-                            <th>28</th>
-                            <th>29</th>
-                            <th>30</th>
-                            <th>31</th>
+                            <th>Roll No.</th>
+                            <th>Student Name</th>
+                            <th>Attendance</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let student of studentsList">
-                            <td class="text-left"> {{student.studentName}} </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
+                            <td> {{student.rollnum}} </td>
+                            <td> {{student.studentName}} </td>
+                            <td>
+                                <span><input type="checkbox" value="{{student.id}}" name="01/{{myForm.value.month}}/{{myForm.value.year}}"
+                                    (change)="changeAttendancePresent($event, student)"> Present </span>
+                                &nbsp;&nbsp;&nbsp;
+                                <span><input type="checkbox" value="{{student.id}}" name="02/{{myForm.value.month}}/{{myForm.value.year}}"
+                                    (change)="changeAttendanceAbsent($event, student)"> Absent </span>
                             </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)"></td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)"></td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)"></td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)"></td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)">
-                            </td>
-                            <td><input type="checkbox" ng-model="vm.myChkModel" ng-change="vm.myClick(vm.myChkModel)"></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
             <div class="col-12 form-group mg-t-8 center">
-                <button class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" (click)="search()">Submit</button>
+                <button class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" (click)="submitAttendance()">Submit</button>
             </div>
         </div>
     </div>

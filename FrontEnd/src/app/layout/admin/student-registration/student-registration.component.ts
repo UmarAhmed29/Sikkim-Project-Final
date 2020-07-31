@@ -94,6 +94,9 @@ export class StudentRegistrationComponent implements OnInit {
     // IndexedDb functions
     async addStudentIDB() {
         this.newStudent.dob = this.dateSelect;
+        var schoolDetail = localStorage.getItem('currentUser');
+        var schoolDetailParse = JSON.parse(schoolDetail);
+        this.newStudent['schoolID'] = schoolDetailParse._id;
         try {
             const addedStudents = await this.service.addStudent(this.newStudent) as IStudent[];
             if (addedStudents.length > 0) {

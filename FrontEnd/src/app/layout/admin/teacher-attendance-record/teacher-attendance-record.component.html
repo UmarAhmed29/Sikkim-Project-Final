@@ -1,0 +1,55 @@
+<app-page-header [heading]="'Teacher Attendance Record'" [icon]="'fa-edit'"></app-page-header>
+
+<div class="card height-auto">
+    <div class="card-body">
+        <form class="new-added-form" [formGroup]="myForm">
+            <div class="row">
+                <div class="col-xl-3 col-lg-6 col-12 form-group">
+                    <label>Date</label>
+                    <div class="form-control">
+                        <my-date-picker [(ngModel)]="model" name="date" [options]="myDatePickerOptions"
+                            formControlName="date" (dateChanged)="onDateChanged($event)"></my-date-picker>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 form-group mg-t-8">
+                <button class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark" (click)="search()">Search</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Search form end -->
+
+<!-- Display List Start -->
+<div class="col-12" *ngIf="teachersList.length!=0">
+    <div class="card">
+        <div class="card-body">
+            <div class="heading-layout1">
+                <div class="item-title">
+                    <h3>Attendence Sheet for Date : {{dateSelect}} </h3>
+                </div>
+            </div>
+            <div class="table-responsive">
+                <table class="table bs-table table-striped table-bordered text-nowrap">
+                    <thead>
+                        <tr>
+                            <th>Reg. No.</th>
+                            <th>Teacher Name</th>
+                            <th>Attendance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let teacher of teachersList">
+                            <td> {{teacher.reg_num}} </td>
+                            <td> {{teacher.teacherName}} </td>
+                            <td> <span class="fa fa-check text-success" *ngIf="teacher.attendance == 'present'"></span>
+                                <span class="fa fa-times text-danger" *ngIf="teacher.attendance == 'absent'"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Display List End -->

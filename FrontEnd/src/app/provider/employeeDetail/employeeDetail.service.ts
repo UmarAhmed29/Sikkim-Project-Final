@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from "rxjs/Observable";
-import { Observer } from "rxjs/Observer";
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
 import { Http, HttpModule } from '@angular/http';
 import { Headers, RequestOptions } from '@angular/http';
 
@@ -19,7 +19,7 @@ export class EmployeeDetailService {
     let options = new RequestOptions({ headers: headers });
     return this.http.post('http://localhost:8000/api/employeeDetail',  data, options)
       .map(res => {
-        console.log(res.json())
+        // console.log(res.json())
         return res.json()
       })
       .catch((err) => {
@@ -28,7 +28,7 @@ export class EmployeeDetailService {
       })
   }
   employeeDelete(id) {
-    console.log(id)
+    // console.log(id)
     var data = {
       id: id
     }

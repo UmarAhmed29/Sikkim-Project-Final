@@ -11,6 +11,7 @@ export class IStudent {
     cls: string;
     section: string;
     adm_id: string;
+    schoolID: string;
     phone: string;
     address: string;
 }
@@ -28,6 +29,7 @@ export class Student implements IStudent {
     cls = '';
     section = '';
     adm_id = '';
+    schoolID = '';
     phone = '';
     address = '';
 }

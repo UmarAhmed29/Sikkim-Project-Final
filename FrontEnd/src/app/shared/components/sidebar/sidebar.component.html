@@ -4,13 +4,13 @@
 	<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
 		<ul class="list-group">
 			<a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard'  }}
+				<i class="fa fa-fw fa-dashboard"></i>&nbsp;<span>{{ 'Dashboard'  }}</span>
 			</a>
 			<a [routerLink]="['/school-registration']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'School Registration' }}
+				<i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;<span>{{ 'School Registration' }}</span>
 			</a>
 			<a [routerLink]="['/view-school']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-table"></i>&nbsp;{{ 'View Schools'  }}
+				<i class="fa fa-fw fa-table"></i>&nbsp;<span>{{ 'View Schools'  }}</span>
 			</a>
 		</ul>
 	</nav>
@@ -19,27 +19,33 @@
 	<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
 		<ul class="list-group">
 			<a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard' }}
+				<i class="fa fa-fw fa-dashboard"></i>&nbsp;<span>{{ 'Dashboard' }}</span>
 			</a>
 			<a [routerLink]="['/student-registration']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-id-card"></i>&nbsp;{{ 'Student Registration' }}
+				<i class="fa fa-fw fa-id-card"></i>&nbsp;<span>{{ 'Student Registration' }}</span>
             </a>
             <a [routerLink]="['/students-detail']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-                <i class="fa fa-users"></i>&nbsp;{{ "Student's Detail"  }}
+                <i class="fa fa-users"></i>&nbsp;<span>{{ "Student's Detail"  }}</span>
             </a>
 			<a [routerLink]="['/employee-registration']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-id-badge"></i>&nbsp;{{ 'Teacher Registration'  }}
+				<i class="fa fa-id-badge"></i>&nbsp;<span>{{ 'Teacher Registration'  }}</span>
 			</a>
 			<a [routerLink]="['/employees-detail']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-list-alt"></i>&nbsp;{{ "Teacher's Detail"  }}
+				<i class="fa fa-list-alt"></i>&nbsp;<span>{{ "Teacher's Detail"  }}</span>
 			</a>
 			<a [routerLink]="['/attendance-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-check"></i>&nbsp;{{ 'Attendance Form'  }}
+				<i class="fa fa-check"></i>&nbsp;<span>{{ 'Student Attendance Form'  }}</span>
 			</a>
 			<a [routerLink]="['/attendance-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-list"></i>&nbsp;{{ 'Attendance Record'  }}
-			</a>
-			<a [routerLink]="['/fees-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+				<i class="fa fa-list"></i>&nbsp;<span>{{ 'Student Attendance Record'  }}</span>
+            </a>
+            <a [routerLink]="['/teacher-attendance-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-check"></i>&nbsp;<span>{{ 'Teacher Attendance Form'  }}</span>
+            </a>
+            <a [routerLink]="['/teacher-attendance-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-list"></i>&nbsp;<span>{{ 'Teacher Attendance Record'  }}</span>
+            </a>
+			<!-- <a [routerLink]="['/fees-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-file-o"></i>&nbsp;{{ 'Fees Form'  }}
 			</a>
 			<a [routerLink]="['/fees-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
@@ -50,7 +56,7 @@
 			</a>
 			<a [routerLink]="['/salary-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-file-o"></i>&nbsp;{{ 'Salary Record'  }}
-			</a>
+			</a> -->
 		</ul>
 	</nav>
 	<!--</ng-template>-->
@@ -59,19 +65,19 @@
 	<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
 		<ul class="list-group">
 			<a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard'  }}
+				<i class="fa fa-fw fa-dashboard"></i>&nbsp;<span>{{ 'Dashboard'  }}</span>
 			</a>
 			<a [routerLink]="['/employee-profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Employee Profile'  }}
+				<i class="fa fa-fw fa-table"></i>&nbsp;<span>{{ 'Employee Profile'  }}</span>
 			</a>
 			<a [routerLink]="['/employee-attendence']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Attendence Record'  }}
+				<i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;<span>{{ 'Attendence Record'  }}</span>
 			</a>
 			<a [routerLink]="['/emp-receipt-voucher']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-file-o"></i>&nbsp;{{ 'Payment Record'  }}
+				<i class="fa fa-file-o"></i>&nbsp;<span>{{ 'Payment Record'  }}</span>
 			</a>
 			<a [routerLink]="['/employee-query']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-file-o"></i>&nbsp;{{ 'Employee Query'  }}
+				<i class="fa fa-file-o"></i>&nbsp;<span>{{ 'Employee Query'  }}</span>
 			</a>
 		</ul>
 	</nav>
@@ -80,19 +86,19 @@
 	<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
 		<ul class="list-group">
 			<a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard'  }}
+				<i class="fa fa-fw fa-dashboard"></i>&nbsp;<span>{{ 'Dashboard'  }}</span>
 			</a>
 			<a [routerLink]="['/student-profile']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;{{ 'Student Profile'  }}
+				<i class="fa fa-fw fa-bar-chart-o"></i>&nbsp;<span>{{ 'Student Profile'  }}</span>
 			</a>
 			<a [routerLink]="['/student-fee']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Fees Record'  }}
+				<i class="fa fa-fw fa-table"></i>&nbsp;<span>{{ 'Fees Record'  }}</span>
 			</a>
 			<!--<a [routerLink]="['/student-receipt-voucher']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-file-o"></i>&nbsp;{{ 'Student Voucher'  }}
 			</a>-->
 			<a [routerLink]="['/student-query']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-file-o"></i>&nbsp;{{ 'Student Query'  }}
+				<i class="fa fa-file-o"></i>&nbsp;<span>{{ 'Student Query'  }}</span>
 			</a>
 		</ul>
 	</nav>

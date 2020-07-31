@@ -11,13 +11,14 @@ export class HeaderComponent implements OnInit {
 
     pushRightClass: string = 'push-right';
     navName;
+    city;
     userType;
     type;
     userData;
     // private translate: TranslateService,
     constructor( public router: Router) {
         var data = localStorage.getItem('currentUser')
-        console.log(JSON.parse(data));
+        // console.log(JSON.parse(data));
         var dataParse = JSON.parse(data)
         this.userData=dataParse;
         this.type = dataParse.type
@@ -27,6 +28,7 @@ export class HeaderComponent implements OnInit {
         }
         else if(this.type=="admin"){
             this.navName=dataParse.schoolName;
+            this.city = dataParse.location;
             this.userType="Admin"
         }
         else if(this.type=="employee"){

@@ -5,7 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './../../../provider/auth.service';
-import { IMyDpOptions, IMyDateModel } from "mydatepicker";
+import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 // IndexedDb imports
 import { TeacherService } from '../../../provider/IndexedDb/teacher.service';
 import { Teacher, ITeacher } from '../../../provider/model/teacher';
@@ -78,16 +78,16 @@ export class EmployeeRegistrationComponent implements OnInit {
             err => { console.log(err); return err }
             ).subscribe(
             data => {
-                alert("Registeration Successfully");
+                alert('Registeration Successfully');
             },
-            err => { alert("Email & Password Invalid"); console.log(err) }
+            err => { alert('Email & Password Invalid'); console.log(err) }
             );
         // location.reload();
         this.router.navigate(['employees-detail'])
         localStorage.setItem('isLoggedin', 'true');
     }
 
-    onDateChanged(event: IMyDateModel) { //calender k change krne se jo data araha
+    onDateChanged(event: IMyDateModel) { // calender k change krne se jo data araha
     this.dateSelect = event.formatted;
     console.log(event.formatted)
     // event properties are: event.date, event.jsdate, event.formatted and event.epoc
@@ -96,6 +96,9 @@ export class EmployeeRegistrationComponent implements OnInit {
     // IndexedDb functions
     async addTeacherIDB() {
         this.newTeacher.dob = this.dateSelect;
+        var schoolDetail = localStorage.getItem('currentUser');
+        var schoolDetailParse = JSON.parse(schoolDetail);
+        this.newTeacher['schoolID'] = schoolDetailParse._id;
         try {
             const addedTeachers = await this.service.addTeacher(this.newTeacher) as ITeacher[];
             if (addedTeachers.length > 0) {

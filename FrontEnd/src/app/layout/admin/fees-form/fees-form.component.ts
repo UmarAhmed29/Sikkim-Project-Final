@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { FormGroup, FormBuilder, Validators } from "@angular/forms";
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { INgxMyDpOptions } from 'ngx-mydatepicker';
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import { StudentDetailService } from './../../../provider/studentDetail/studentDetail.service';

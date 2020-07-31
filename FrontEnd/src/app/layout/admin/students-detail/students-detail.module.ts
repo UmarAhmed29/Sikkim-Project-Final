@@ -10,7 +10,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     StudentsDetailRoutingModule,
-    PageHeaderModule,ReactiveFormsModule,
+    PageHeaderModule,
+    ReactiveFormsModule,
     FormsModule
   ],
   declarations: [StudentsDetailComponent]

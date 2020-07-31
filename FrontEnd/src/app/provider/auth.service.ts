@@ -37,6 +37,7 @@ export class AuthService {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post('http://localhost:8000/api/login', loginForm, options)
+    // return this.http.post('http://18.204.202.235:8000/api/login', loginForm, options)
       .map(res => {
         console.log(res.json())
         // if (res.json().type === "superAdmin") {

@@ -3,14 +3,17 @@ import { Router } from '@angular/router';
 import { routerTransition } from '../../../router.animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
-import { EmployeeDetailService } from './../../../provider/employeeDetail/employeeDetail.service';
+import { EmployeeDetailService } from '../../../provider/employeeDetail/employeeDetail.service';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { INgxMyDpOptions } from 'ngx-mydatepicker';
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
-import { AttendanceService } from './../../../provider/attendance/attendance.service';
+import { AttendanceService } from '../../../provider/attendance/attendance.service';
+// IndexedDb imports
+import { StudentAttendanceService } from '../../../provider/IndexedDb/student-attendance.service';
+import { Student, IStudentAttendance } from '../../../provider/model/studentAttendance';
 import { StudentService } from '../../../provider/IndexedDb/student.service';
 const now = new Date();
 
@@ -18,15 +21,14 @@ const now = new Date();
   selector: 'app-attendance-form',
   templateUrl: './attendance-form.component.html',
   styleUrls: ['./attendance-form.component.css'],
-  providers: [StudentService]
+  providers: [StudentService, StudentAttendanceService]
 })
 export class AttendanceFormComponent implements OnInit {
     S_cls;
     S_section;
-    S_month;
-    S_year;
     studentsList = [];
-    private service: StudentService;
+    private studentService: StudentService;
+    private studentAttendanceService: StudentAttendanceService;
     searchData = false;
   check;
   isSubmit = false;
@@ -37,13 +39,9 @@ export class AttendanceFormComponent implements OnInit {
   month = this.months.toString();
   todayDate = this.date + "." + this.month + "." + this.year;
   dateSelect = this.date + "." + this.month + "." + this.year;
-  // if(month < 10) {
-  //   this.month = "0" + month;
-  // };
   model: any = { date: { day: this.date, month: this.month, year: this.year } };
   public myDatePickerOptions: IMyDpOptions = {
-    // other options...
-    dateFormat: 'dd.mm.yyyy',
+    dateFormat: 'dd/mm/yyyy',
   };
 
   public myForm: FormGroup;
@@ -51,24 +49,24 @@ export class AttendanceFormComponent implements OnInit {
   attendanceData;
   checkDateSelect = false;
 
-    constructor(private formBuilder: FormBuilder, private employeeDetailService: EmployeeDetailService, private attendanceService: AttendanceService, service: StudentService) {
+    constructor(private formBuilder: FormBuilder, private employeeDetailService: EmployeeDetailService, private attendanceService: AttendanceService, studentService: StudentService, studentAttendanceService: StudentAttendanceService) {
     // this.createForm();
     // console.log("day"+this.date,"year"+this.year,"month"+this.month)
-    this.service = service;
+    this.studentService = studentService;
+    this.studentAttendanceService = studentAttendanceService;
     var schoolDetail = localStorage.getItem('currentUser');
     var schoolDetailParse = JSON.parse(schoolDetail);
-    this.employeeDetailService.employeeDetail({ schoolID: schoolDetailParse._id })
-      .subscribe(
-      data => {
-        console.log(data);
-        this.attendanceData = data;
-        for (var i = 0; i < this.attendanceData.length; i++) {
-          this.attendanceData[i].attendance = "absent"
-          this.attendanceData[i].attendanceDate = this.dateSelect;
-        }
-      },
-      err => { alert("Something Went Wrong"); console.log(err) }
-      );
+    // this.employeeDetailService.employeeDetail({ schoolID: schoolDetailParse._id })
+    //   .subscribe(
+    //   data => {
+    //     this.attendanceData = data;
+    //     for (var i = 0; i < this.attendanceData.length; i++) {
+    //       this.attendanceData[i].attendance = "absent"
+    //       this.attendanceData[i].attendanceDate = this.dateSelect;
+    //     }
+    //   },
+    //   err => { alert("Something Went Wrong"); console.log(err) }
+    //   );
   }
 
   attendanceSubmit() {
@@ -109,14 +107,9 @@ export class AttendanceFormComponent implements OnInit {
   }
   ngOnInit() {
     this.myForm = this.formBuilder.group({
-      // Empty string or null means no initial value. Can be also specific date for
-      // example: {date: {year: 2018, month: 10, day: 9}} which sets this date to initial
-      // value.
       cls: [null, Validators.required],
       section: [null, Validators.required],
-      month: [null, Validators.required],
-      year: [null, Validators.required]
-      // other controls are here...
+      date: [null, Validators.required]
     });
   }
   setDate(): void {
@@ -139,7 +132,7 @@ export class AttendanceFormComponent implements OnInit {
   }
   onDateChanged(event: IMyDateModel) { //calender k change krne se jo data araha
     this.dateSelect = event.formatted;
-    console.log(event.formatted)
+    // console.log(event.formatted)
     // event properties are: event.date, event.jsdate, event.formatted and event.epoc
   }
   change(e, type) { //checkbox k change krne se jo data araha
@@ -147,17 +140,16 @@ export class AttendanceFormComponent implements OnInit {
     console.log(type);
     var Data = type
     if (e.target.checked == true) {
-      // delete Data.email
-        var data={
-          email:Data.email,
-          attendanceDate:this.dateSelect,
-          attendance:"present",
-          employeeID:Data.employeeID,
-          employeeName:Data.employeeName,
-          employeeType:Data.employeeType,
-          schoolID:Data.schoolID,
-          month:this.month,
-          year:this.year
+        var data = {
+          email: Data.email,
+          attendanceDate: this.dateSelect,
+          attendance: 'present',
+          employeeID: Data.employeeID,
+          employeeName: Data.employeeName,
+          employeeType: Data.employeeType,
+          schoolID: Data.schoolID,
+          month: this.month,
+          year: this.year
         }
       console.log(data)
       this.attendanceService.attendanceSubmit(data)
@@ -167,54 +159,93 @@ export class AttendanceFormComponent implements OnInit {
             ).subscribe(
         data => {
           console.log(data)
-          alert("Attendeance Submitted");
+          alert('Attendance Submitted');
         },
-        err => { alert("Something Went Wrong"); console.log(err) }
+        err => { alert('Something Went Wrong'); console.log(err) }
         );
       this.check = true;
     }
-    // for (var i = 0; i < this.attendanceData.length; i++) {
-    //   if (this.attendanceData[i]._id === type._id) {
-    //     if (e.target.checked == true) {
-    //       this.attendanceData[i].attendance = "present";
-    //       this.attendanceData[i].attendanceDate = this.todayDate;
-    //       // break;
-    //     }
-    //     else {
-    //       this.attendanceData[i].attendance = "absent";
-    //       this.attendanceData[i].attendanceDate = this.todayDate;
-    //       // break;
-    //     }
-    //   }
-    //   else if (this.attendanceData[i].attendance == "present") {
-    //     this.attendanceData[i].attendance = "present";
-    //     this.attendanceData[i].attendanceDate = this.todayDate;
-    //     // break;
-    //   }
-    //   else {
-    //     this.attendanceData[i].attendance = "absent";
-    //     this.attendanceData[i].attendanceDate = this.todayDate;
-    //   }
-    // }
   }
 
-//   search specific students from class,section
+//   search specific students from class, section
   async search() {
     this.S_cls = this.myForm.value.cls;
     this.S_section = this.myForm.value.section;
-    this.S_month = this.myForm.value.month;
-    this.year = this.myForm.value.year;
-    // console.log('Selected in Search ', this.S_cls, this.S_section, this.S_month);
-
     try {
-            this.studentsList = await this.service.getStudentByClass(this.S_cls, this.S_section);
-            console.log('data :: ', this.studentsList);
-            if(this.studentsList.length > 0){
-                this.searchData = true;
-            }
+        this.studentsList = await this.studentService.getStudentByClass(this.S_cls, this.S_section);
+        if (this.studentsList.length > 0) {
+            this.searchData = true;
+        }else {
+            alert('No data found!');
+            return;
+        }
+        } catch (error) {
+            // console.error(error);
+            // alert(error.message);
+            alert('Please select Class and Section');
+        }
+  }
+
+// when the checkbox in attendance form is checked then attendance will be submitted
+// and will be stored in IndexedDB
+  async changeAttendancePresent(e, type) { // checkbox k change krne se jo data araha
+    var Data = type;
+    // if checkbox for attendance is checked then attendance will be marked 'present'
+    if (e.target.checked == true) {
+        var data = {
+          attendanceDate: this.dateSelect,
+          attendance: 'present',
+          rollnum: Data.rollnum,
+          studentName: Data.studentName,
+          cls: Data.cls,
+          section: Data.section,
+          schoolID: Data.schoolID,
+          month: this.myForm.value.month,
+          year: this.myForm.value.year,
+        }
+        try {
+            const attendanceSubmitted = await this.studentAttendanceService.addStudentAttendance(data) as IStudentAttendance[];
+            // if (attendanceSubmitted.length > 0) {
+            //     alert('Teacher Registration Successfull');
+            // }
         } catch (error) {
             console.error(error);
             alert(error.message);
         }
+      this.check = true;
+    }
   }
+
+    async changeAttendanceAbsent(e, type) { // checkbox k change krne se jo data araha
+        var Data = type;
+        // if checkbox for attendance is not checked then attendance will be marked 'absent'
+        if (e.target.checked == true) {
+            var data = {
+                attendanceDate: this.dateSelect,
+                attendance: 'absent',
+                rollnum: Data.rollnum,
+                studentName: Data.studentName,
+                cls: Data.cls,
+                section: Data.section,
+                schoolID: Data.schoolID,
+                month: this.myForm.value.month,
+                year: this.myForm.value.year,
+            }
+            try {
+                const attendanceSubmitted = await this.studentAttendanceService.addStudentAttendance(data) as IStudentAttendance[];
+                // if (attendanceSubmitted.length > 0) {
+                //     alert('Teacher Registration Successfull');
+                // }
+            } catch (error) {
+                console.error(error);
+                alert(error.message);
+            }
+            this.check = true;
+        }
+    }
+    submitAttendance() {
+        alert('Attendance Submitted Successfully.');
+        this.search();
+    }
+
 }

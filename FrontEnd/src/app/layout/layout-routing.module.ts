@@ -15,6 +15,8 @@ const routes: Routes = [
             { path: 'students-detail', loadChildren: './admin/students-detail/students-detail.module#StudentsDetailModule' },
             { path: 'attendance-form', loadChildren: './admin/attendance-form/attendance-form.module#AttendanceFormModule' },
             { path: 'attendance-record', loadChildren: './admin/attendance-record/attendance-record.module#AttendanceRecordModule' },
+            { path: 'teacher-attendance-form', loadChildren: './admin/teacher-attendance-form/teacher-attendance-form.module#TeacherAttendanceFormModule' },
+            { path: 'teacher-attendance-record', loadChildren: './admin/teacher-attendance-record/teacher-attendance-record.module#TeacherAttendanceRecordModule' },
             { path: 'fees-form', loadChildren: './admin/fees-form/fees-form.module#FeesFormModule' },
             { path: 'fees-record', loadChildren: './admin/fees-record/fees-record.module#FeesRecordModule' },
             { path: 'salary-form', loadChildren: './admin/salary-form/salary-form.module#SalaryFormModule' },
