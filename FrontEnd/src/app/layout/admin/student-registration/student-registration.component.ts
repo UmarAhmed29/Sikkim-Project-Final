@@ -97,6 +97,7 @@ export class StudentRegistrationComponent implements OnInit {
         var schoolDetail = localStorage.getItem('currentUser');
         var schoolDetailParse = JSON.parse(schoolDetail);
         this.newStudent['schoolID'] = schoolDetailParse._id;
+        this.newStudent.timeStamp = this.DateTime();
         try {
             const addedStudents = await this.service.addStudent(this.newStudent) as IStudent[];
             if (addedStudents.length > 0) {
@@ -112,5 +113,13 @@ export class StudentRegistrationComponent implements OnInit {
 
     clearNewStudent() {
         this.newStudent = new Student();
+    }
+
+    DateTime() {
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        return dateTime;
     }
 }

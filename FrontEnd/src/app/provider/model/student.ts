@@ -14,6 +14,7 @@ export class IStudent {
     schoolID: string;
     phone: string;
     address: string;
+    timeStamp: string;
 }
 
 export class Student implements IStudent {
@@ -32,4 +33,5 @@ export class Student implements IStudent {
     schoolID = '';
     phone = '';
     address = '';
+    timeStamp = '';
 }

@@ -7,6 +7,7 @@ export class IStudentAttendance {
     attendanceDate: string;
     attendance: string;
     schoolID: string;
+    timeStamp: string;
 }
 
 export class Student implements IStudentAttendance {
@@ -18,4 +19,5 @@ export class Student implements IStudentAttendance {
     attendanceDate = '';
     attendance = '';
     schoolID = '';
+    timeStamp = '';
 }

@@ -2,39 +2,48 @@
 <html>
     <div breadcrumbs-area>
         <h1 class="text-muted">Student Registration</h1>
-       
+
         <div class="card height-auto">
             <div class="card-body">
-            <!-- <form role="form" [formGroup]="RegistrationForm">
+            <form role="form" [formGroup]="RegistrationForm">
                 <div class="form-content">
                     <div class="form-group">
-                        <input class="form-control input-underline input-lg" type="studentName" formControlName="studentName" placeholder="Student Name">
+                        <input class="form-control input-underline input-lg" formControlName="schoolName" placeholder="School Name">
                     </div>
                     <div class="form-group">
-                        <input class="form-control input-underline input-lg" type="fatherName" formControlName="fatherName" placeholder="Father Name">
+                        <input class="form-control input-underline input-lg" formControlName="ownerName" placeholder="Owner Name">
                     </div>
                     <div class="form-group">
-                        <input class="form-control input-underline input-lg" type="registrationDate" formControlName="registrationDate" placeholder="Registration Date">
+                        <input class="form-control input-underline input-lg" formControlName="ownerCNIC" placeholder="Owner CNIC">
                     </div>
                     <div class="form-group">
-                        <input class="form-control input-underline input-lg" type="class" formControlName="class" placeholder="Class">
+                        <input class="form-control input-underline input-lg" formControlName="registrationDate"
+                            placeholder="Registration Date">
                     </div>
                     <div class="form-group">
-                        <input class="form-control input-underline input-lg" type="QRno" formControlName="QRno" placeholder="QR Number">
+                        <input class="form-control input-underline input-lg" formControlName="amount" placeholder="Amount">
                     </div>
                     <div class="form-group">
-                        <input class="form-control input-underline input-lg" type="studentFees" formControlName="studentFees" placeholder="Student Fees">
+                        <input class="form-control input-underline input-lg" formControlName="location" placeholder="Location">
                     </div>
                     <div class="form-group">
-                        <input class="form-control input-underline input-lg" type="email" formControlName="email" placeholder="Email">
+                        <input class="form-control input-underline input-lg" type="schoolID" formControlName="schoolID"
+                            placeholder="School ID">
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" formControlName="password" placeholder="Password">
+                        <input class="form-control input-underline input-lg" type="email" formControlName="email"
+                            placeholder="Email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control input-underline input-lg" formControlName="password"
+                            placeholder="Password">
                     </div>
                 </div>
-                <button class="btn rounded-btn" [disabled]="RegistrationForm.status == 'INVALID'" (click)="addStudent()">Submit</button>			&nbsp;
-            </form> -->
-            <form class="new-added-form">
+                <button class="btn rounded-btn" [disabled]="RegistrationForm.status == 'INVALID'"
+                    (click)="addSchool()">Submit</button>
+                &nbsp;
+            </form>
+            <!-- <form class="new-added-form">
                 <div class="row">
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>First Name *</label>
@@ -47,7 +56,7 @@
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Gender *</label>
                         <select class="select2 form-control">
-                            
+
                             <option value="1">Male</option>
                             <option value="2">Female</option>
                             <option value="3">Others</option>
@@ -66,7 +75,7 @@
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Blood Group *</label>
                         <select class="select2 form-control">
-                            
+
                             <option value="1">A+</option>
                             <option value="2">A-</option>
                             <option value="3">B+</option>
@@ -81,7 +90,7 @@
                             <option value="1">Christian</option>
                             <option value="2">Islam</option>
                             <option value="3">Hindu</option>
-                            
+
                             <option value="3">Buddish</option>
                             <option value="3">Others</option>
                         </select>
@@ -93,7 +102,7 @@
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Class *</label>
                         <select class="select2 form-control">
-                            
+
                             <option value="1">Play</option>
                             <option value="2">Nursery</option>
                             <option value="3">One</option>
@@ -106,7 +115,7 @@
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Section *</label>
                         <select class="select2 form-control">
-                            
+
                             <option value="1">Pink</option>
                             <option value="2">Blue</option>
                             <option value="3">Bird</option>
@@ -136,8 +145,7 @@
                         <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
                     </div>
                 </div>
-            </form>
+            </form> -->
         </div>
-       
+
     </div>
-    

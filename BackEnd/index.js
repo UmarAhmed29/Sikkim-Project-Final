@@ -3,11 +3,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 Authentication = require('./models/authentication.js');
-Multiplication = require('./models/multiplication.js');
 SchoolRegister = require('./models/schoolRegistration.js');
 StudentRegister = require('./models/studentRegistration.js');
 EmployeeRegister = require('./models/employeeRegistration.js');
-Attendance = require('./models/attendance.js');
+StudentAttendance = require('./models/studentAttendance.js');
+TeacherAttendance = require('./models/teacherAttendance.js');
 Fees = require('./models/fees.js');
 Salary = require('./models/salary.js');
 //cors XML k error ko resolve krne k liye lgya h and main purpose of cors to connect frontend to backend
@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 mongoose.Promise = global.Promise;
 // mongoose.connect('mongodb://shw:shw12345@ds143245.mlab.com:43245/school-management-system', {
 mongoose.connect('mongodb://umar:umar3290@cluster0-shard-00-00-fyq5q.mongodb.net:27017,cluster0-shard-00-01-fyq5q.mongodb.net:27017,cluster0-shard-00-02-fyq5q.mongodb.net:27017/School?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority', {
+// mongoose.connect('mongodb://18.204.202.235:27017/admin', {
     useMongoClient: true
     /* other options */
 });
@@ -84,15 +85,6 @@ app.post('/api/login', function (request, response) {
         })
     }
 });
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//Multiplication API
-app.post('/api/multiplication', function (request, response) {
-    response.header('Access-Control-Allow-Origin', "*");
-    num1 = request.body.num1
-    num2 = request.body.num2
-    console.log("Hello Sir Zohaib your answer is ", num1 * num2)
-    // return response.send("Hello sir Zohaib your answer is ", num1*num2);
-})
 // //register school post request to mlab from server
 app.post('/api/schoolRegistration', function (request, response) {
     response.header('Access-Control-Allow-Origin', "*");
@@ -267,9 +259,10 @@ app.post('/api/studentDelete', function (req, res) {
         }
     }).exec();
 });
-//Attendance Submit
-app.post('/api/attendanceSubmit', function (request, response) {
-    var AttendanceData = new Attendance(request.body);
+
+// Student Attendance Submit
+app.post('/api/studentattendanceSubmit', function (request, response) {
+    var AttendanceData = new StudentAttendance(request.body);
     AttendanceData.save(function (err, getData) {
         if (!err) {
             console.log("data", getData)
@@ -278,15 +271,16 @@ app.post('/api/attendanceSubmit', function (request, response) {
             console.log("Err", err)
             return response.status(500).send(err);
         }
-    })
-})
-//Attendance Record
-app.post('/api/attendanceRecord', function (req, res) {
+    });
+});
+
+// Student Attendance Record
+app.post('/api/studentattendanceRecord', function (req, res) {
     // data={
     //  attendanceDate : req.body.attendanceDate,
     //  schoolID : req.body.schoolID,
     // }
-    Attendance.find(req.body, function (err, data) {
+    StudentAttendance.find(req.body, function (err, data) {
         if (!err) {
             console.log("data", data)
             res.send(data)
@@ -295,7 +289,39 @@ app.post('/api/attendanceRecord', function (req, res) {
             res.send(err)
         }
     });
-})
+});
+
+// Teacher Attendance Submit
+app.post('/api/teacherattendanceSubmit', function (request, response) {
+    var AttendanceData = new TeacherAttendance(request.body);
+    AttendanceData.save(function (err, getData) {
+        if (!err) {
+            console.log("data", getData)
+            return response.status(200).send(getData);
+        } else {
+            console.log("Err", err)
+            return response.status(500).send(err);
+        }
+    });
+});
+
+// Teacher Attendance Record
+app.post('/api/teacherattendanceRecord', function (req, res) {
+    // data={
+    //  attendanceDate : req.body.attendanceDate,
+    //  schoolID : req.body.schoolID,
+    // }
+    TeacherAttendance.find(req.body, function (err, data) {
+        if (!err) {
+            console.log("data", data)
+            res.send(data)
+        } else {
+            console.log("Err", err)
+            res.send(err)
+        }
+    });
+});
+
 //Fees Submit
 app.post('/api/feesSubmit', function (request, response) {
     var FeesData = new Fees(request.body);
@@ -307,8 +333,9 @@ app.post('/api/feesSubmit', function (request, response) {
             console.log("Err", err)
             return response.status(500).send(err);
         }
-    })
-})
+    });
+});
+
 //Attendance Record
 app.post('/api/feesRecord', function (req, res) {
     console.log(req.body)
@@ -321,7 +348,8 @@ app.post('/api/feesRecord', function (req, res) {
             res.send(err)
         }
     });
-})
+});
+
 //Salary Submit
 app.post('/api/salarySubmit', function (request, response) {
     var SalaryData = new Salary(request.body);
@@ -333,8 +361,9 @@ app.post('/api/salarySubmit', function (request, response) {
             console.log("Err", err)
             return response.status(500).send(err);
         }
-    })
-})
+    });
+});
+
 //Attendance Record
 app.post('/api/salaryRecord', function (req, res) {
     Salary.find(req.body, function (err, data) {
@@ -346,7 +375,8 @@ app.post('/api/salaryRecord', function (req, res) {
             res.send(err)
         }
     });
-})
+});
+
 // When successfully connected
 mongoose.connection.on('connected to mongodb', function () {
     console.log('Mongoose default connection open to ');
@@ -361,6 +391,7 @@ mongoose.connection.on('error', function (err) {
 mongoose.connection.on('disconnected', function () {
     console.log('Mongoose default connection disconnected');
 });
+
 var port = process.env.PORT || 8000;
 app.listen(port, function () {
     console.log("Server run on port " + port)

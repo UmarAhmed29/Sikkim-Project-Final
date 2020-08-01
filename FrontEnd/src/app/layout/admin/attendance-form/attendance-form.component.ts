@@ -190,6 +190,7 @@ export class AttendanceFormComponent implements OnInit {
 // and will be stored in IndexedDB
   async changeAttendancePresent(e, type) { // checkbox k change krne se jo data araha
     var Data = type;
+    var datetime = this.DateTime();
     // if checkbox for attendance is checked then attendance will be marked 'present'
     if (e.target.checked == true) {
         var data = {
@@ -202,6 +203,7 @@ export class AttendanceFormComponent implements OnInit {
           schoolID: Data.schoolID,
           month: this.myForm.value.month,
           year: this.myForm.value.year,
+          timeStamp: datetime
         }
         try {
             const attendanceSubmitted = await this.studentAttendanceService.addStudentAttendance(data) as IStudentAttendance[];
@@ -218,6 +220,7 @@ export class AttendanceFormComponent implements OnInit {
 
     async changeAttendanceAbsent(e, type) { // checkbox k change krne se jo data araha
         var Data = type;
+        var datetime = this.DateTime();
         // if checkbox for attendance is not checked then attendance will be marked 'absent'
         if (e.target.checked == true) {
             var data = {
@@ -230,6 +233,7 @@ export class AttendanceFormComponent implements OnInit {
                 schoolID: Data.schoolID,
                 month: this.myForm.value.month,
                 year: this.myForm.value.year,
+                timeStamp: datetime
             }
             try {
                 const attendanceSubmitted = await this.studentAttendanceService.addStudentAttendance(data) as IStudentAttendance[];
@@ -246,6 +250,14 @@ export class AttendanceFormComponent implements OnInit {
     submitAttendance() {
         alert('Attendance Submitted Successfully.');
         this.search();
+    }
+
+    DateTime() {
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        return dateTime;
     }
 
 }

@@ -12,5 +12,5 @@ var schoolRegisterSchema = mongoose.Schema({
     schoolID: { type: String,unique: false },
     ownerName: { type: String,unique: false },
     ownerCNIC: { type: String,unique: false }
-}, { collection: 'school-register' });
+}, { collection: 'Schools' });
 var SchoolRegister =module.exports= mongoose.model('SchoolRegister', schoolRegisterSchema);

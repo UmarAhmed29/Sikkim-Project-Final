@@ -99,6 +99,7 @@ export class EmployeeRegistrationComponent implements OnInit {
         var schoolDetail = localStorage.getItem('currentUser');
         var schoolDetailParse = JSON.parse(schoolDetail);
         this.newTeacher['schoolID'] = schoolDetailParse._id;
+        this.newTeacher.timeStamp = this.DateTime();
         try {
             const addedTeachers = await this.service.addTeacher(this.newTeacher) as ITeacher[];
             if (addedTeachers.length > 0) {
@@ -114,5 +115,13 @@ export class EmployeeRegistrationComponent implements OnInit {
 
     clearNewTeacher() {
         this.newTeacher = new Teacher();
+    }
+
+    DateTime() {
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        return dateTime;
     }
 }

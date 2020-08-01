@@ -13,6 +13,8 @@ export class ITeacher {
     exp: string;
     subject: string;
     address: string;
+    schoolID: string;
+    timeStamp: string;
 }
 
 export class Teacher implements ITeacher {
@@ -30,4 +32,6 @@ export class Teacher implements ITeacher {
     exp = '';
     subject = '';
     address = '';
+    schoolID = '';
+    timeStamp = '';
 }

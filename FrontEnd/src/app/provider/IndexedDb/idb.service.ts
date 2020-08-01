@@ -88,7 +88,7 @@ const getDatabase = () => {
                 dataType: DATA_TYPE.String,
             },
             email: {
-                notNull: true,
+                notNull: false,
                 dataType: DATA_TYPE.String,
             },
             cls: {
@@ -115,6 +115,10 @@ const getDatabase = () => {
                 notNull: true,
                 dataType: DATA_TYPE.String,
             },
+            timeStamp: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            }
         },
     };
 
@@ -178,6 +182,10 @@ const getDatabase = () => {
                 notNull: true,
                 dataType: DATA_TYPE.String,
             },
+            timeStamp: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            }
         },
     };
 
@@ -216,6 +224,10 @@ const getDatabase = () => {
             section: {
                 notNull: true,
                 dataType: DATA_TYPE.String,
+            },
+            timeStamp: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
             }
         },
     };
@@ -252,6 +264,10 @@ const getDatabase = () => {
                 notNull: true,
                 dataType: DATA_TYPE.String,
             },
+            timeStamp: {
+                notNull: true,
+                dataType: DATA_TYPE.String,
+            }
         },
     };
 
@@ -277,7 +293,8 @@ function getAvailableStudents() {
         adm_id: '2021001',
         schoolID: '5ef6dbd30f05bf3dd8e26239',
         phone: '9876543210',
-        address: 'USA'
+        address: 'USA',
+        timeStamp: '2018-8-3 11:12:40'
     }];
     return availableStudents;
 }

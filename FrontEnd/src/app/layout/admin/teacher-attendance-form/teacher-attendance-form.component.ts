@@ -108,6 +108,7 @@ export class TeacherAttendanceFormComponent implements OnInit {
 // and will be stored in IndexedDB
   async changeAttendancePresent(e, type) { // checkbox k change krne se jo data araha
     var Data = type;
+    var datetime = this.DateTime();
     // if checkbox for attendance is checked then attendance will be marked 'present'
     if (e.target.checked == true) {
         var data = {
@@ -116,7 +117,8 @@ export class TeacherAttendanceFormComponent implements OnInit {
           reg_num: Data.reg_num,
           teacherName: Data.teacherName,
           subject: Data.subject,
-          schoolID: Data.schoolID
+          schoolID: Data.schoolID,
+          timeStamp: datetime
         }
         try {
             const attendanceSubmitted = await this.teacherAttendanceService.addTeacherAttendance(data) as ITeacherAttendance[];
@@ -130,16 +132,19 @@ export class TeacherAttendanceFormComponent implements OnInit {
 
     async changeAttendanceAbsent(e, type) { // checkbox k change krne se jo data araha
         var Data = type;
+        var datetime =  this.DateTime();
         // if checkbox for attendance is not checked then attendance will be marked 'absent'
         if (e.target.checked == true) {
             var data = {
                 attendanceDate: this.dateSelect,
                 attendance: 'absent',
                 reg_num: Data.reg_num,
-                teacherName: Data.studentName,
+                teacherName: Data.teacherName,
                 schoolID: Data.schoolID,
-                subject: Data.subject
+                subject: Data.subject,
+                timeStamp: datetime
             }
+            console.log(data);
             try {
                 const attendanceSubmitted = await this.teacherAttendanceService.addTeacherAttendance(data) as ITeacherAttendance[];
                 // if (attendanceSubmitted.length > 0) {
@@ -157,4 +162,11 @@ export class TeacherAttendanceFormComponent implements OnInit {
         this.search();
     }
 
+    DateTime() {
+        var today = new Date();
+        var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
+        var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+        var dateTime = date + ' ' + time;
+        return dateTime;
+    }
 }

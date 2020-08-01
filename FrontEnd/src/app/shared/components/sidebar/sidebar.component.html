@@ -46,11 +46,17 @@
 				<i class="fa fa-list-alt"></i>&nbsp;{{ "Teacher's Detail"  }}
 			</a>
 			<a [routerLink]="['/attendance-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-check"></i>&nbsp;{{ 'Attendance Form'  }}
+				<i class="fa fa-check"></i>&nbsp;{{ 'Student Attendance Form'  }}
 			</a>
 			<a [routerLink]="['/attendance-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-list"></i>&nbsp;{{ 'Attendance Record'  }}
-			</a>
+				<i class="fa fa-list"></i>&nbsp;{{ 'Student Attendance Record'  }}
+            </a>
+            <a [routerLink]="['/teacher-attendance-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-check"></i>&nbsp;{{ 'Teacher Attendance Form'  }}
+            </a>
+            <a [routerLink]="['/teacher-attendance-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+                <i class="fa fa-list"></i>&nbsp;{{ 'Teacher Attendance Record'  }}
+            </a>
 			<!-- <a [routerLink]="['/fees-form']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-file-o"></i>&nbsp;{{ 'Fees Form'  }}
 			</a>
@@ -61,7 +67,7 @@
 				<i class="fa fa-file-o"></i>&nbsp;{{ 'Salary Form'  }}
 			</a> -->
 			<a [routerLink]="['/salary-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
-				<i class="fa fa-file-o"></i>&nbsp;{{ 'Upload Files'  }}
+				<i class="fa fa-upload"></i>&nbsp;{{ 'Upload Files'  }}
 			</a>
 		</ul>
 	</nav>

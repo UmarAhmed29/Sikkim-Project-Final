@@ -18,6 +18,10 @@ import 'rxjs/add/operator/catch';
     providers: [StudentService],
 })
 export class StudentsDetailComponent implements OnInit {
+    S_cls;
+    S_section;
+    studentsList = [];
+    searchData = false;
     // indexeddb part start
     private service: StudentService;
     students: Array<IStudent> = [];
@@ -27,19 +31,18 @@ export class StudentsDetailComponent implements OnInit {
     studentData;
     studentlength;
     schoolID;
+    isSubmit = false;
     public myForm: FormGroup;
     constructor(public fb: FormBuilder, public router: Router, private studentDetailService: StudentDetailService, service: StudentService) {
         var schoolDetail = localStorage.getItem('currentUser');
         var schoolDetailParse = JSON.parse(schoolDetail);
         this.service = service;
         this.schoolID = schoolDetailParse._id;
-        // this.getData(this.schoolID);
-        this.getStudents();
     }
         ngOnInit() {
         this.myForm = this.fb.group({
-            class: [null, Validators.required]
-            // other controls are here...
+            cls: [null, Validators.required],
+            section: [null, Validators.required],
         });
     }
     submit() {
@@ -82,14 +85,22 @@ export class StudentsDetailComponent implements OnInit {
             );
     }
 
-    // IndexedDb fetching student details function
-    async getStudents() {
+    //   search specific students from class, section
+    async search() {
+        this.S_cls = this.myForm.value.cls;
+        this.S_section = this.myForm.value.section;
         try {
-            this.students = await this.service.getStudents();
-
+            this.studentsList = await this.service.getStudentByClass(this.S_cls, this.S_section);
+            if (this.studentsList.length > 0) {
+                this.searchData = true;
+            } else {
+                alert('No data found!');
+                return;
+            }
         } catch (error) {
-            console.error(error);
-            alert(error.message);
+            // console.error(error);
+            // alert(error.message);
+            alert('Please select Class and Section');
         }
     }
 }

@@ -58,17 +58,17 @@ export class AttendanceRecordComponent implements OnInit {
         var schoolDetail = localStorage.getItem('currentUser');
         var schoolDetailParse = JSON.parse(schoolDetail);
         this.schoolID = schoolDetailParse._id;
-        this.employeeDetailService.employeeDetail({ schoolID: this.schoolID })
-            .subscribe(
-            data => {
-                this.employeesData = data;
-                for (var i = 0; i < this.employeesData.length; i++) {
-                    this.employeesData[i].attendence = 'absent'
-                    this.employeesData[i].attendanceDate = this.dateSelect;
-                }
-            },
-            err => { alert('Something Went Wrong'); console.log(err) }
-            );
+        // this.employeeDetailService.employeeDetail({ schoolID: this.schoolID })
+        //     .subscribe(
+        //     data => {
+        //         this.employeesData = data;
+        //         for (var i = 0; i < this.employeesData.length; i++) {
+        //             this.employeesData[i].attendence = 'absent'
+        //             this.employeesData[i].attendanceDate = this.dateSelect;
+        //         }
+        //     },
+        //     err => { alert('Something Went Wrong'); console.log(err) }
+        //     );
     }
     allAttendanceRecord(data) {
         this.attendanceData = data;

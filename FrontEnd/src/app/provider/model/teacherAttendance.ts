@@ -6,6 +6,7 @@ export class ITeacherAttendance {
     attendance: string;
     schoolID: string;
     subject: string;
+    timeStamp: string;
 }
 
 export class Teacher implements ITeacherAttendance {
@@ -16,4 +17,5 @@ export class Teacher implements ITeacherAttendance {
     attendance = '';
     attendanceDate = '';
     schoolID = '';
+    timeStamp = '';
 }
