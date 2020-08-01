@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 @Component({
     selector: 'app-view-school',
     templateUrl: './view-school.component.html',
-    styleUrls: ['./view-school.component.scss'],
+    styleUrls: ['./view-school.component.css'],
     animations: [routerTransition()]
 })
 export class ViewSchoolComponent implements OnInit {

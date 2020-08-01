@@ -7,7 +7,7 @@ import { EmployeeDetailService } from './../../../provider/employeeDetail/employ
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { INgxMyDpOptions } from 'ngx-mydatepicker';
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import { AttendanceService } from './../../../provider/attendance/attendance.service';
@@ -36,7 +36,7 @@ export class AttendanceRecordComponent implements OnInit {
     isSubmit = false;
     schoolID;
     constructor(private formBuilder: FormBuilder, private employeeDetailService: EmployeeDetailService, private attendanceService: AttendanceService) {
-        //Get All Employees Data
+        //Get All Employees Data 
         var schoolDetail = localStorage.getItem('currentUser');
         var schoolDetailParse = JSON.parse(schoolDetail);
         this.schoolID = schoolDetailParse._id;

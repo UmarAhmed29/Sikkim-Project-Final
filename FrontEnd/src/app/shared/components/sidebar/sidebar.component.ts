@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { AuthService } from './../../../provider/auth.service';
 @Component({
     selector: 'app-sidebar',
@@ -11,10 +11,10 @@ export class SidebarComponent {
     type;
      constructor( ) {
        var data=localStorage.getItem('currentUser')
-    //    console.log(JSON.parse(data));
+       console.log(JSON.parse(data));
        var dataParse=JSON.parse(data)
        this.type=dataParse.type
-    //    console.log(this.type)
+       console.log(this.type)
     }
     eventCalled() {
         this.isActive = !this.isActive;

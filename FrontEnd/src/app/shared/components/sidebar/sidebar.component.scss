@@ -5,8 +5,8 @@ $topnav-background-color: #042954;
     z-index: 1000;
     top: 53px;
     left: 235px;
-    width: 245px;
-    margin-left: -245px;
+    width: 235px;
+    margin-left: -235px;
     border: none;
     border-radius: 0;
     overflow-y: auto;
@@ -28,7 +28,7 @@ $topnav-background-color: #042954;
             color: #999;
             text-decoration: none;
             .fa {
-                margin-right: 0px;
+                margin-right: 10px;
             }
         }
         a:hover {
@@ -46,7 +46,7 @@ $topnav-background-color: #042954;
             border:none;
         }
         .panel-title {
-            font-size : 0rem;
+            font-size : 1rem;
             height : 50px;
             margin-bottom:0;
             a {

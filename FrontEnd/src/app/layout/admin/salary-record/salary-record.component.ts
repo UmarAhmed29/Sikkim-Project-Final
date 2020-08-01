@@ -6,7 +6,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { INgxMyDpOptions } from 'ngx-mydatepicker';
 import { IMyDpOptions, IMyDateModel } from 'mydatepicker';
 import { EmployeeDetailService } from './../../../provider/employeeDetail/employeeDetail.service';
@@ -14,7 +14,7 @@ import { SalaryService } from './../../../provider/salary/salary.service';
 @Component({
     selector: 'app-salary-record',
     templateUrl: './salary-record.component.html',
-    styleUrls: ['./salary-record.component.scss']
+    styleUrls: ['./salary-record.component.css']
 })
 export class SalaryRecordComponent implements OnInit {
     d = new Date();
@@ -167,3 +167,4 @@ export class SalaryRecordComponent implements OnInit {
         console.log(event.formatted)
     }
 }
+

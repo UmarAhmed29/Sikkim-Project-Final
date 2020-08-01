@@ -1,0 +1,94 @@
+<!--<app-page-header [heading]="'Tables'" [icon]="'fa-table'"></app-page-header>-->
+<!--<h1>View Schools</h1>-->
+<app-page-header [heading]="'Teacher Details'" [icon]="'fa-edit'"></app-page-header>
+<form [formGroup]="myForm" novalidate>
+	<table class="table">
+		<tbody>
+			<tr>
+				<td><span>Search By Name</span>
+					<input type="text" class="form-control input-underline input-lg" formControlName="name">
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<button class="btn rounded-btn" [disabled]="myForm.status == 'INVALID'" (click)="submit()">Submit</button>
+</form>
+<!--<div class="card mb-3">-->
+<div class="card mb-3">
+	<div class="card-header">Total Employees Register {{employeelength}}</div>
+	<div class="card-block table-responsive">
+		<table class="table display data-table text-nowrap" >
+			<!-- <thead class="thead-inverse">
+				<tr>
+
+					<th>Employee Name</th>
+					<th>Father Name</th>
+					<th>Registration Date</th>
+					<th>Employee Type</th>
+					<th>Employee ID</th>
+					<th>Salary</th>
+					<th>Email</th>
+					<th>Delete</th>
+				</tr>
+			</thead> -->
+			<thead>
+				<tr>
+					<th>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input checkAll">
+							<label class="form-check-label">Reg. No.</label>
+						</div>
+					</th>
+					<!-- <th>Photo</th> -->
+					<th>Teacher Name</th>
+					<th>Father Name</th>
+					<th>Gender</th>
+					<th>Date of Birth</th>
+					<th>Religion</th>
+					<th>Blood Group</th>
+					<th>Phone</th>
+					<th>E-mail</th>
+                    <th>Qualification</th>
+                    <th>Experience</th>
+                    <th>Subject</th>
+                    <th>Address</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr *ngFor="let teacher of teachers">
+					<td>
+						<div class="form-check">
+							<input type="checkbox" class="form-check-input">
+							<label class="form-check-label"> {{teacher.reg_num}} </label>
+						</div>
+					</td>
+					<!-- <td class="text-center"><img src="/home/rugu/Desktop/rug_pro/Sikkim-Project-Final/FrontEnd/IMG20190525101104.jpg" alt="student"></td> -->
+					<td> {{teacher.teacherName}} </td>
+					<td> {{teacher.fatherName}} </td>
+					<td> {{teacher.gender}} </td>
+					<td> {{teacher.dob}} </td>
+					<td> {{teacher.religion}} </td>
+					<td> {{teacher.blood_grp}} </td>
+					<td> {{teacher.phone}} </td>
+                    <td> {{teacher.email}} </td>
+                    <td> {{teacher.qualification}} </td>
+                    <td> {{teacher.exp}} </td>
+                    <td> {{teacher.subject}} </td>
+                    <td> {{teacher.address}} </td>
+					 <td>
+						<div class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+								<span class="flaticon-more-button-of-three-dots"></span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-right">
+								<a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
+								<a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
+								<a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
