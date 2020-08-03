@@ -37,13 +37,17 @@
 			<form class="new-added-form"  role="form" [formGroup]="RegistrationForm">
 				<div class="row">
 					<div class="col-xl-3 col-lg-6 col-12 form-group">
-						<label>Teacher Name*</label>
+						<label>First Name*</label>
 						<input class="form-control" type="teacherName" formControlName="teacherName" [(ngModel)]="newTeacher.teacherName">
 					</div>
 					<div class="col-xl-3 col-lg-6 col-12 form-group">
 						<label>Father Name*</label>
 						<input class="form-control" type="fatherName" formControlName="fatherName" [(ngModel)]="newTeacher.fatherName">
-					</div>
+                    </div>
+                    <div class="col-xl-3 col-lg-6 col-12 form-group">
+                        <label>Last Name*</label>
+                        <input class="form-control" type="teacherName" >
+                    </div>
 					<div class="col-xl-3 col-lg-6 col-12 form-group">
 						<label>Gender*</label>
                         <select class="select2 form-control" type="gender" formControlName="gender" [(ngModel)]="newTeacher.gender">
@@ -86,10 +90,10 @@
 						<label>E-Mail*</label>
 						<input class="form-control" type="email" formControlName="email" [(ngModel)]="newTeacher.email">
 					</div>
-					<div class="col-xl-3 col-lg-6 col-12 form-group">
+					<!-- <div class="col-xl-3 col-lg-6 col-12 form-group">
 						<label>Registration No.*</label>
 						<input class="form-control" type="reg_num" formControlName="reg_num" [(ngModel)]="newTeacher.reg_num">
-                    </div>
+                    </div> -->
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
                         <label>Qualification*</label>
                         <input class="form-control" type="qualification" formControlName="qualification" [(ngModel)]="newTeacher.qualification">
