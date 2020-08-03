@@ -59,15 +59,16 @@
 		<table class="table display data-table text-nowrap" >
 			<thead>
 				<tr>
-					<th>
+					<!-- <th>
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input">
 							<label class="form-check-label">Admission ID</label>
 						</div>
-					</th>
+					</th> -->
 					<!-- <th>Photo</th> -->
                     <th>Student Name</th>
                     <th>Father Name</th>
+                    <th>Last Name</th>
                     <th>Gender</th>
                     <th>Date of Birth</th>
                     <th>Roll No.</th>
@@ -82,14 +83,15 @@
 			</thead>
 			<tbody>
 				<tr *ngFor="let student of studentsList">
-					<td>
+					<!-- <td>
 						<div class="form-check">
 							<input type="checkbox" class="form-check-input">
 							<label class="form-check-label"> {{student.adm_id}} </label>
 						</div>
-					</td>
+					</td> -->
 					<td> {{student.studentName}} </td>
-					<td> {{student.fatherName}} </td>
+                    <td> {{student.fatherName}} </td>
+                    <td> {{student.lastName}} </td>
 					<td> {{student.gender}} </td>
 					<td> {{student.dob}} </td>
 					<td> {{student.rollnum}} </td>

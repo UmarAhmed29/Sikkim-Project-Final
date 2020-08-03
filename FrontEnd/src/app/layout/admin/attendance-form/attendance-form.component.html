@@ -95,19 +95,19 @@
                         <tr>
                             <th>Roll No.</th>
                             <th>Student Name</th>
-                            <th>Attendance</th>
+                            <th>Attendance &nbsp;&nbsp;&nbsp;<button class="btn-md btn-gradient-yellow btn-hover-bluedark" (click)="checkAll(this)">All Present</button></th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr *ngFor="let student of studentsList">
                             <td> {{student.rollnum}} </td>
-                            <td> {{student.studentName}} </td>
+                            <td> {{student.studentName}} {{student.lastName}} </td>
                             <td>
                                 <span><input type="checkbox" value="{{student.id}}" name="01/{{myForm.value.month}}/{{myForm.value.year}}"
-                                    (change)="changeAttendancePresent($event, student)"> Present </span>
-                                &nbsp;&nbsp;&nbsp;
+                                    (change)="changeAttendancePresent($event, student)" > Present </span>
+                                <!-- &nbsp;&nbsp;&nbsp;
                                 <span><input type="checkbox" value="{{student.id}}" name="02/{{myForm.value.month}}/{{myForm.value.year}}"
-                                    (change)="changeAttendanceAbsent($event, student)"> Absent </span>
+                                    (change)="changeAttendanceAbsent($event, student)"> Absent </span> -->
                             </td>
                         </tr>
                     </tbody>

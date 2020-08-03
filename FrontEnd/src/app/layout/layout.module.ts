@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LayoutRoutingModule } from './layout-routing.module';
 import { LayoutComponent } from './layout.component';
 import { HeaderComponent, SidebarComponent } from '../shared';
+import { MarksFormComponent } from './admin/marks-form/marks-form.component';
+import { MarksRecordComponent } from './admin/marks-record/marks-record.component';
 
 @NgModule({
     imports: [
@@ -19,7 +21,9 @@ import { HeaderComponent, SidebarComponent } from '../shared';
     declarations: [
         LayoutComponent,
         HeaderComponent,
-        SidebarComponent
+        SidebarComponent,
+        MarksFormComponent,
+        MarksRecordComponent
     ]
 })
 export class LayoutModule { }

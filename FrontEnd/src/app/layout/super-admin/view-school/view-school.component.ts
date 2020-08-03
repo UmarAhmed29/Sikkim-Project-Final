@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
     selector: 'app-view-school',
     templateUrl: './view-school.component.html',
     styleUrls: ['./view-school.component.css'],
-    animations: [routerTransition()]
+    // animations: [routerTransition()]
 })
 export class ViewSchoolComponent implements OnInit {
     schoolsData;

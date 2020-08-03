@@ -52,6 +52,7 @@ export class StudentRegistrationComponent implements OnInit {
         this.RegistrationForm = this.fb.group({
             studentName: ['', [Validators.required]],
             fatherName: ['', [Validators.required]],
+            lastName: ['', [Validators.required]],
             gender: ['', [Validators.required]],
             dob: ['', [Validators.required]],
             rollnum: ['', [Validators.required]],
@@ -60,7 +61,7 @@ export class StudentRegistrationComponent implements OnInit {
             email: [''],
             cls: ['', [Validators.required]],
             section: ['', [Validators.required]],
-            adm_id: ['', [Validators.required]],
+            // adm_id: ['', [Validators.required]],
             phone: ['', [Validators.required]],
             address: ['', [Validators.required]]
         })
@@ -100,7 +101,9 @@ export class StudentRegistrationComponent implements OnInit {
         this.newStudent.timeStamp = this.DateTime();
         try {
             const addedStudents = await this.service.addStudent(this.newStudent) as IStudent[];
+            // this.authService.registrationStudent(this.newStudent);
             if (addedStudents.length > 0) {
+                // this.backgroundSync();          // background syncing function call
                 this.students.push(addedStudents[0]);
                 this.clearNewStudent();
                 alert('Student Registration Successfull');
@@ -121,5 +124,12 @@ export class StudentRegistrationComponent implements OnInit {
         var time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
         var dateTime = date + ' ' + time;
         return dateTime;
+    }
+
+    // actual background sync function
+    backgroundSync() {
+        console.log('In backgroundSync function');
+        navigator.serviceWorker.ready.then((swRegistration) => swRegistration.sync.register('post-data')
+        ).catch(console.log);
     }
 }

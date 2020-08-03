@@ -1,11 +1,8 @@
-
-<html>
+<app-page-header [heading]="'School Registration'" [icon]="'fa-edit'"></app-page-header>
     <div breadcrumbs-area>
-        <h1 class="text-muted">Student Registration</h1>
-
         <div class="card height-auto">
             <div class="card-body">
-            <form role="form" [formGroup]="RegistrationForm">
+            <!-- <form role="form" [formGroup]="RegistrationForm">
                 <div class="form-content">
                     <div class="form-group">
                         <input class="form-control input-underline input-lg" formControlName="schoolName" placeholder="School Name">
@@ -42,15 +39,11 @@
                 <button class="btn rounded-btn" [disabled]="RegistrationForm.status == 'INVALID'"
                     (click)="addSchool()">Submit</button>
                 &nbsp;
-            </form>
-            <!-- <form class="new-added-form">
+            </form> -->
+            <form class="new-added-form">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>First Name *</label>
-                        <input type="text" placeholder="" class="form-control">
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-12 form-group">
-                        <label>Last Name *</label>
+                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                        <label>School Name *</label>
                         <input type="text" placeholder="" class="form-control">
                     </div>
                     <div class="col-xl-3 col-lg-6 col-12 form-group">
@@ -131,7 +124,7 @@
                         <label>Phone</label>
                         <input type="text" placeholder="" class="form-control">
                     </div>
-                    <div class="col-lg-6 col-12 form-group">
+                    <!-- <div class="col-lg-6 col-12 form-group">
                         <label>Short BIO</label>
                         <textarea class="textarea form-control" name="message" id="form-message" cols="10"
                             rows="9"></textarea>
@@ -139,13 +132,13 @@
                     <div class="col-lg-6 col-12 form-group mg-t-30">
                         <label class="text-dark-medium">Upload Student Photo (150px X 150px)</label>
                         <input type="file" class="form-control-file">
-                    </div>
+                    </div> -->
                     <div class="col-12 form-group mg-t-8">
                         <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
                         <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
                     </div>
                 </div>
-            </form> -->
+            </form>
         </div>
-
+        </div>
     </div>

@@ -54,7 +54,7 @@ app.post('/api/login', function (request, response) {
             if (!get) {
                 return response.status(404).send()
             }
-            console.log("Login Succcessfully!!! Welcome ", get.name)
+            console.log("Login Succcessfully!!! Welcome ", get.schoolName)
             return response.status(200).send(get)
         })
     }
@@ -153,6 +153,7 @@ app.post('/api/studentRegistration', function (request, response) {
         type: "student"
     };
     var StudentData = new StudentRegister(data);
+    console.log('STUDENT DATA FROM FROINTEND =============== ', StudentData);
     StudentData.save(function (err, getData) {
         if (!err) {
             console.log("data", getData)

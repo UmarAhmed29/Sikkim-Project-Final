@@ -1,6 +1,7 @@
 export class IStudent {
     id?: number;
     studentName: string;
+    lastName: string;
     fatherName: string;
     gender: string;
     dob: string;
@@ -10,7 +11,7 @@ export class IStudent {
     email: string;
     cls: string;
     section: string;
-    adm_id: string;
+    // adm_id: string;
     schoolID: string;
     phone: string;
     address: string;
@@ -21,6 +22,7 @@ export class Student implements IStudent {
     id?= null;
     studentName = '';
     fatherName = '';
+    lastName = '';
     gender = '';
     dob = '';
     rollnum = '';
@@ -29,7 +31,7 @@ export class Student implements IStudent {
     email = '';
     cls = '';
     section = '';
-    adm_id = '';
+    // adm_id = '';
     schoolID = '';
     phone = '';
     address = '';

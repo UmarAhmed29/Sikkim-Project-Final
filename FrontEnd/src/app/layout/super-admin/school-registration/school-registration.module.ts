@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ChartsModule as Ng2Charts } from 'ng2-charts';
-import { FormsModule,ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SchoolRegistrationRoutingModule } from './school-registration-routing.module';
 import { SchoolRegistrationComponent } from './school-registration.component';
 import { PageHeaderModule } from '../../../shared';

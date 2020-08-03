@@ -16,6 +16,10 @@ import { AttendanceService } from './provider/attendance/attendance.service';
 import { FeesService } from './provider/fees/fees.service';
 import { SalaryService } from './provider/salary/salary.service';
 import { MyDatePickerModule } from 'mydatepicker';
+import { environment } from '../environments/environment';
+import { ModuleWithProviders } from '@angular/core';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 
 // AoT requires an exported function for factories
 // export function HttpLoaderFactory(http: Http) {
@@ -41,6 +45,9 @@ import { MyDatePickerModule } from 'mydatepicker';
         //         deps: [Http]
         //     }
         // })
+        ServiceWorkerModule.register('./service-worker.js', {
+        enabled: environment.production,
+    }),
     ],
     providers: [AuthService,AuthGuard,ViewSchoolService,EmployeeDetailService,
     StudentDetailService,AttendanceService,FeesService,SalaryService],

@@ -18,12 +18,15 @@
 			<a [routerLink]="['/employees-detail']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Teachers Details'  }}
 			</a>
-			<a [routerLink]="['/students-detail']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+			<a [routerLink]="['/attendance-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Student Attendence'  }}
 			</a>
-			<a [routerLink]="['/employees-detail']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+			<a [routerLink]="['/teacher-attendance-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-fw fa-table"></i>&nbsp;{{ 'Teachers Attandence'  }}
-			</a>
+            </a>
+            <a [routerLinkActive]="['router-link-active']" class="list-group-item" href="http://tantratech.online/login/index.php" target="_blank">
+                <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'Online Portal' }}
+            </a>
 		</ul>
 	</nav>
 </div>
@@ -68,7 +71,10 @@
 			</a> -->
 			<a [routerLink]="['/salary-record']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-upload"></i>&nbsp;{{ 'Upload Files'  }}
-			</a>
+            </a>
+            <a [routerLinkActive]="['router-link-active']" class="list-group-item" href="http://tantratech.online/login/index.php" target="_blank">
+                <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'Online Portal' }}
+            </a>
 		</ul>
 	</nav>
 	<!--</ng-template>-->
@@ -99,7 +105,10 @@
 			</a>
 			<a [routerLink]="['/employee-query']" [routerLinkActive]="['router-link-active']" class="list-group-item">
 				<i class="fa fa-file-o"></i>&nbsp;{{ 'Employee Query'  }}
-			</a> -->
+            </a> -->
+            <a [routerLinkActive]="['router-link-active']" class="list-group-item" href="http://tantratech.online/login/index.php" target="_blank">
+                <i class="fa fa-fw fa-desktop"></i>&nbsp;{{ 'Online Portal' }}
+            </a>
 		</ul>
 	</nav>
 </div>
