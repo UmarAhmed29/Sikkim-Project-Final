@@ -11,17 +11,23 @@ import { DashboardComponent } from './dashboard.component';
 import {
     NotificationComponent
 } from './components';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
+// import { BarChartComponent } from './bar-chart/bar-chart.component';
 
 @NgModule({
     imports: [
         CommonModule,
         NgbCarouselModule.forRoot(),
         NgbAlertModule.forRoot(),
-        DashboardRoutingModule
+        DashboardRoutingModule,
     ],
     declarations: [
         DashboardComponent,
-        NotificationComponent
+        NotificationComponent,
+        // BarChartComponent
+    ],
+    exports: [
+        // BarChartComponent
     ]
 })
 export class DashboardModule { }

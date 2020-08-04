@@ -1,41 +1,93 @@
-<app-page-header [heading]="'Salary Form'" [icon]="'fa-edit'"></app-page-header>
+<app-page-header [heading]="'Examination'" [icon]="'fa-edit'"></app-page-header>
 <form [formGroup]="myForm" novalidate>
-	<table class="table">
-		<tbody>
-			<tr>
-				<td> <span>Select Today Date </span>
-					<my-date-picker name="mydate" [(ngModel)]="model" [options]="myDatePickerOptions" formControlName="myDate" (dateChanged)="onDateChanged($event)"></my-date-picker>
-				</td>
-				<td><span>Enter Employee ID</span>
-					<input type="text" class="form-control input-underline input-lg" formControlName="employeeID">
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	<button class="btn rounded-btn" [disabled]="myForm.status == 'INVALID'" (click)="submit()">Submit</button>
+    <table class="table">
+        <tbody>
+            <tr>
+                <td><span>Section</span>
+                    <select class="select2 form-control">
+
+                        <option value="">Select Class</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="5th">5th</option>
+                        <option value="6th">6th</option>
+                        <option value="7th">7th</option>
+                        <option value="8th">8th</option>
+                        <option value="9th">9th</option>
+                        <option value="10th">10th</option>
+                    </select>
+                </td>
+                <td><span>Section</span>
+                    <select class="select2 form-control">
+
+                        <option value="">Select Section</option>
+                        <option value="1">A</option>
+                        <option value="2">B</option>
+                        <option value="3">C</option>
+                        <option value="4">D</option>
+                    </select>
+                </td>
+                <td><span>Year</span>
+                    <input type="text" class="form-control input-underline input-lg">
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="heading-layout1">
+                    <div class="item-title">
+                        <h3>Exam Grade Lists</h3>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table bs-table table-striped table-bordered text-nowrap">
+                        <thead>
+                            <tr>
+                                <th class="text-left">Students</th>
+                                <th>English</th>
+                                <th>Maths</th>
+                                <th>Hindi</th>
+                                <th>Science</th>
+                                <th>Social Science</th>
+                                <th>Marathi</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-left">Michele Johnson</td>
+                                <td><input type="text" class="form-control input-underline input-lg">
+                                </td>
+                                <td><input type="text" class="form-control input-underline input-lg">
+                                </td>
+                                <td><input type="text" class="form-control input-underline input-lg">
+                                </td>
+                                <td><input type="text" class="form-control input-underline input-lg">
+                                </td>
+                                <td><input type="text" class="form-control input-underline input-lg">
+                                </td>
+                                <td><input type="text" class="form-control input-underline input-lg">
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-12 form-group mg-t-8">
+        <span> <button class="btn rounded-btn" class="button button3" (click)="submit()">Submit</button></span>
+    </div>
 </form>
-<div class="card mb-3" style="margin-top:0px" *ngIf="isSubmit==true">
-	<div class="card-block table-responsive">
-		<table class="table" border="1x">
-			<thead class="thead-inverse">
-				<tr>
-					<!--<th>#</th>-->
-					<th>Employee Name</th>
-					<th>Employee Type</th>
-					<th>Employee ID</th>
-					<th>Salary</th>
-					<th>Payment</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr *ngFor="let employee of employeeData">
-					<td>{{employee.employeeName}}</td>
-					<td>{{employee.employeeType}}</td>
-					<td>{{employee.employeeID}}</td>
-					<td>{{employee.salary}}</td>
-					<td><button class="btn btn-default" (click)="salarySubmit(employee)">Submit</button></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
+<hr>

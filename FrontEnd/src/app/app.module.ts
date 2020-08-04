@@ -19,6 +19,9 @@ import { MyDatePickerModule } from 'mydatepicker';
 import { environment } from '../environments/environment';
 import { ModuleWithProviders } from '@angular/core';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ChartsModule } from 'ng2-charts';
+// import { BarChartComponent } from '../app/layout/dashboard/bar-chart/bar-chart.component';
+import { DashboardModule } from './layout/dashboard/dashboard.module';
 
 
 // AoT requires an exported function for factories
@@ -28,7 +31,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 // }
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        // BarChartComponent
     ],
     imports: [
         BrowserModule,
@@ -38,6 +42,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
         HttpModule,
         AppRoutingModule,
         ReactiveFormsModule,
+        ChartsModule,
+        DashboardModule,
         // TranslateModule.forRoot({
         //     loader: {
         //         provide: TranslateLoader,
